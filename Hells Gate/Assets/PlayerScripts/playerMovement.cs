@@ -14,7 +14,7 @@ public class playerMovement : MonoBehaviour
     public BoxCollider2D groundCheck;
     public LayerMask groundMask;
     public bool grounded;
-
+    public bool doubleJump;
 
     void Start()
     {
@@ -26,14 +26,28 @@ public class playerMovement : MonoBehaviour
         float xinput = Input.GetAxis("Horizontal");
         float yinput = Input.GetAxis("Vertical");
 
+        // Move the player horizontally
         if (Mathf.Abs(xinput) > 0)
         {
             body.velocity = new Vector2(xinput * moveSpeed, body.velocity.y);
         }
 
-        if (Mathf.Abs(yinput) > 0 && grounded)
+        // Jumping logic
+        if (Input.GetButtonDown("Jump"))
         {
-            body.velocity = new Vector2(body.velocity.x, yinput * jumpSpeed);
+            if (grounded)
+            {
+                // First jump
+                body.velocity = new Vector2(body.velocity.x, jumpSpeed);
+                grounded = false; // Player is no longer on the ground
+                doubleJump = true; // Enable double jump
+            }
+            else if (doubleJump)
+            {     //!grounded && 
+                // Double jump
+                body.velocity = new Vector2(body.velocity.x, jumpSpeed);
+                doubleJump = false; // Disable double jump after it's used
+            }
         }
     }
 
@@ -41,6 +55,7 @@ public class playerMovement : MonoBehaviour
     {
         CheckGround();
 
+        // Deceleration/drag logic
         if (grounded)
         {
             if (Input.GetAxis("Horizontal") == 0)
@@ -59,8 +74,7 @@ public class playerMovement : MonoBehaviour
 
     void CheckGround()
     {
+        // Check if the player is on the ground
         grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
     }
 }
-
-
