@@ -5,6 +5,7 @@ using UnityEngine;
 public class character : MonoBehaviour
 {
     [SerializeField] public int currentHp, maxHp = 100, currentExp, maxExp, currentLv;
+    public bool isDead = false;
 
     public HealthBar healthBar;
 
@@ -58,5 +59,18 @@ public class character : MonoBehaviour
     {
         currentHp -= damage;
         healthBar.SetHealth(currentHp);
+
+        if (currentHp <= 0 && !isDead) {
+        
+            isDead = true;
+        }
+
+        else if (currentHp > 0)
+        {
+            isDead = false;
+        }
     }
-}
+
+        
+    }
+
