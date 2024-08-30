@@ -602,6 +602,7 @@ MonoBehaviour:
   currentExp: 0
   maxExp: 200
   currentLv: 1
+  isDead: 0
   healthBar: {fileID: 0}
 --- !u!114 &852530090
 MonoBehaviour:
