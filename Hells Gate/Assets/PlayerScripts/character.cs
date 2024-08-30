@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class character : MonoBehaviour
 {
-    [SerializeField] public int currentHp, maxHp, currentExp, maxExp, currentLv;
+    [SerializeField] public int currentHp, maxHp = 100, currentExp, maxExp, currentLv;
+    public bool isDead = false;
+
+    public HealthBar healthBar;
+
+    void Start()
+    {
+        currentHp = maxHp;
+        healthBar.SetMaxHealth(maxHp);
+    }
 
     private void OnEnable()
     {
@@ -38,4 +47,30 @@ public class character : MonoBehaviour
 
         maxExp += 100; // sets new exp milestone
     }
-}
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(20);
+        }
+    }
+    void TakeDamage(int damage)
+    {
+        currentHp -= damage;
+        healthBar.SetHealth(currentHp);
+
+        if (currentHp <= 0 && !isDead) {
+        
+            isDead = true;
+        }
+
+        else if (currentHp > 0)
+        {
+            isDead = false;
+        }
+    }
+
+        
+    }
+

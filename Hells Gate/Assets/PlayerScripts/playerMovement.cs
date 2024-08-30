@@ -17,6 +17,8 @@ public class playerMovement : MonoBehaviour
     private bool doubleJump;
     private bool hasJumped;
 
+    private character characterScript;
+
     // Dash Variables
     public float dashSpeedMultiplier = 5f;
     public float dashDuration = 0.2f;
@@ -29,6 +31,7 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        characterScript = GetComponent<character>();
     }
 
     void Update()
@@ -80,11 +83,19 @@ public class playerMovement : MonoBehaviour
                 doubleJump = false;
             }
         }
+
+        if (characterScript.isDead == true)
+        {
+            deathMovement(); // Player stops moving when dead
+        }
+
+        
     }
 
     void FixedUpdate()
     {
         CheckGround();
+        
 
         // Deceleration/drag logic
         if (grounded)
@@ -137,5 +148,11 @@ public class playerMovement : MonoBehaviour
     void jump(){
         body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         hasJumped = true;
+    }
+
+    void deathMovement()
+    {
+            moveSpeed = 0;
+            body.velocity = Vector2.zero;
     }
 }
