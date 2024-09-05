@@ -57,11 +57,6 @@ public class playerMovement : MonoBehaviour
             EndDash();
         }
 
-        //resests player to 0,0
-        if(Input.GetKeyDown("r")){
-            transform.position = new Vector2(0, 0);
-        }
-
         // Jumping logic
         if (Input.GetButtonDown("Jump"))
         {
