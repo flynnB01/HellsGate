@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
-    // TODO - enemy movement scripts, hp values etc
-    int expValue = 20;
+    // init enemy stats
+    public int expValue;
 
     void Death() // when enemy dies
     {

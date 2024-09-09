@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class character : MonoBehaviour
 {
-    [SerializeField] public int currentHp, maxHp = 100, currentExp, maxExp, currentLv;
-    public bool isDead = false;
+    // initialize player lvl stats, ( can be given value in unity )
+    [SerializeField] public int currentHp, maxHp, currentExp, maxExp, currentLv;
+    public bool isDead = false; // checks if player is dead
 
     public HealthBar healthBar;
 
@@ -50,27 +51,30 @@ public class character : MonoBehaviour
 
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(20);
         }
+        */
     }
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage) // deals damage to player, argument is how much damage is dealt
     {
         currentHp -= damage;
         healthBar.SetHealth(currentHp);
 
-        if (currentHp <= 0 && !isDead) {
-        
+        if (currentHp <= 0 && !isDead) // kills player
+        {
             isDead = true;
+            // Destroy(gameObject);
         }
 
-        else if (currentHp > 0)
+        else if (currentHp > 0) 
         {
             isDead = false;
         }
     }
 
         
-    }
+}
 
