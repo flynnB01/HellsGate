@@ -42,6 +42,8 @@ public class playerMovement : MonoBehaviour
         // Move the player horizontally
         if (Mathf.Abs(xinput) > 0 && !isDashing)
         {
+            //Debug.Log(xinput);
+            transform.localScale = new Vector3(xinput, 1, 1);
             body.velocity = new Vector2(xinput * moveSpeed, body.velocity.y);
         }
 
@@ -143,6 +145,11 @@ public class playerMovement : MonoBehaviour
     void jump(){
         body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         hasJumped = true;
+    }
+
+    void Flip()
+    {
+
     }
 
     void deathMovement()
