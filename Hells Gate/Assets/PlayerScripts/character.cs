@@ -10,6 +10,11 @@ public class character : MonoBehaviour
 
     public HealthBar healthBar;
 
+    public float attack =0;
+
+    
+
+
     void Start()
     {
         currentHp = maxHp;
