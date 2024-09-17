@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-  public void PlayGame()
+    //base case of '1'
+    public static int loadSavedGame = 1;
+
+    public void PlayGame()
     {
         Debug.Log("Game Start");
+        //game starts and case '3' is activated
+        loadSavedGame = 3;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1;
     }
@@ -16,5 +21,12 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Exited Game");
         Application.Quit();
+    }
+
+    public void LoadGame()
+    {
+        //game starts and case '2' is loaded 
+        loadSavedGame = 2;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

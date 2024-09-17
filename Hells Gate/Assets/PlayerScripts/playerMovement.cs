@@ -75,7 +75,8 @@ public class playerMovement : MonoBehaviour
                 jump();
                 doubleJump = false; // Disable double jump after it's used
             }
-            if(body.velocity.y < 0 && !hasJumped){
+            if (body.velocity.y < 0 && !hasJumped)
+            {
                 jump();
                 doubleJump = false;
             }
@@ -85,14 +86,11 @@ public class playerMovement : MonoBehaviour
         {
             deathMovement(); // Player stops moving when dead
         }
-
-        
     }
 
     void FixedUpdate()
     {
         CheckGround();
-        
 
         // Deceleration/drag logic
         if (grounded)
@@ -115,7 +113,8 @@ public class playerMovement : MonoBehaviour
     {
         // Check if the player is on the ground
         grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
-        if (grounded){
+        if (grounded)
+        {
             hasJumped = false;
         }
         // Reset dash when grounded after dash cooldown
@@ -139,10 +138,11 @@ public class playerMovement : MonoBehaviour
     {
         // Stop the dash
         isDashing = false;
-        body.velocity = new Vector2(0, body.velocity.y); 
+        body.velocity = new Vector2(0, body.velocity.y);
     }
 
-    void jump(){
+    void jump()
+    {
         body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         hasJumped = true;
     }
@@ -154,7 +154,7 @@ public class playerMovement : MonoBehaviour
 
     void deathMovement()
     {
-            moveSpeed = 0;
-            body.velocity = Vector2.zero;
+        moveSpeed = 0;
+        body.velocity = Vector2.zero;
     }
 }
