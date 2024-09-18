@@ -10,6 +10,7 @@ public class character : MonoBehaviour
     public bool isDead = false; // checks if player is dead
 
     public HealthBar healthBar;
+    public GameManager gameManager;
 
     void Start()
     {
@@ -94,7 +95,9 @@ public class character : MonoBehaviour
         currentHp -= damage;
         if (currentHp <= 0 && !isDead) // kills player
         {
+            
             isDead = true;
+            gameManager.gameOver(); // Brings up Gameover UI
             // Destroy(gameObject);
         }
 
