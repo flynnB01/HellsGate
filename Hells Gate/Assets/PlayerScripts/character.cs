@@ -89,6 +89,12 @@ public class character : MonoBehaviour
             TakeDamage(20);
         }
         */
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            HealPlayer(20);
+            Debug.Log("Healed Player");
+        }
     }
     public void TakeDamage(int damage) // deals damage to player, argument is how much damage is dealt
     {
@@ -104,6 +110,15 @@ public class character : MonoBehaviour
         else if (currentHp > 0)
         {
             isDead = false;
+        }
+    }
+
+    public void HealPlayer(int healAmount) // For healing scripts
+    {
+        currentHp += healAmount;
+        if (currentHp > maxHp)
+        {
+            currentHp = maxHp;
         }
     }
 
