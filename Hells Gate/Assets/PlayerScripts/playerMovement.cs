@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
+    
     public Rigidbody2D body;
     public float moveSpeed;
     public float jumpSpeed;
@@ -18,6 +19,7 @@ public class playerMovement : MonoBehaviour
     private bool hasJumped;
 
     private character characterScript;
+    public Animator animator;
 
     // Dash Variables
     public float dashSpeedMultiplier = 5f;
@@ -32,6 +34,7 @@ public class playerMovement : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         characterScript = GetComponent<character>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -43,7 +46,7 @@ public class playerMovement : MonoBehaviour
         if (Mathf.Abs(xinput) > 0 && !isDashing)
         {
             //Debug.Log(xinput);
-            transform.localScale = new Vector3(xinput, 1, 1);
+            transform.localScale = new Vector3(xinput * 4.5f, 4.5f, 1.0f);
             body.velocity = new Vector2(xinput * moveSpeed, body.velocity.y);
         }
 
@@ -109,6 +112,9 @@ public class playerMovement : MonoBehaviour
                 body.velocity = new Vector2(body.velocity.x * airDecay, body.velocity.y);
             }
         }
+
+        animator.SetFloat("X_Velocity", Mathf.Abs(body.velocity.x));
+        animator.SetFloat("Y_Velocity", body.velocity.y);
     }
 
     void CheckGround()
@@ -117,6 +123,9 @@ public class playerMovement : MonoBehaviour
         grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
         if (grounded){
             hasJumped = false;
+            animator.SetBool("isJumping", hasJumped);
+
+
         }
         // Reset dash when grounded after dash cooldown
         if (grounded && !isDashing && Time.time >= lastDashTime + dashCooldown)
@@ -145,10 +154,8 @@ public class playerMovement : MonoBehaviour
     void jump(){
         body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         hasJumped = true;
-    }
 
-    void Flip()
-    {
+        animator.SetBool("isJumping", hasJumped);
 
     }
 
