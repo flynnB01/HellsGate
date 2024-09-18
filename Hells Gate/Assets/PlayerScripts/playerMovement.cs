@@ -17,6 +17,7 @@ public class playerMovement : MonoBehaviour
     private bool doubleJump;
     private bool hasJumped;
 
+    public Animator animator;
     private character characterScript;
 
     // Dash Variables
@@ -32,6 +33,7 @@ public class playerMovement : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         characterScript = GetComponent<character>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -45,6 +47,7 @@ public class playerMovement : MonoBehaviour
             //Debug.Log(xinput);
             transform.localScale = new Vector3(xinput, 1, 1);
             body.velocity = new Vector2(xinput * moveSpeed, body.velocity.y);
+
         }
 
         // Dash mechanic
@@ -99,6 +102,12 @@ public class playerMovement : MonoBehaviour
             {
                 body.velocity = new Vector2(body.velocity.x * groundDecay, body.velocity.y);
             }
+
+            if (body.velocity.y == 0) // checks if player has fully stopped moving/ touched down on the ground
+            {
+                animator.SetBool("isJumping", false); // falling animation stops
+            }
+
         }
         else
         {
@@ -107,6 +116,12 @@ public class playerMovement : MonoBehaviour
                 body.velocity = new Vector2(body.velocity.x * airDecay, body.velocity.y);
             }
         }
+
+        animator.SetFloat("x_vel", Mathf.Abs(body.velocity.x));
+        animator.SetFloat("y_vel", body.velocity.y);
+
+
+        
     }
 
     void CheckGround()
@@ -145,12 +160,10 @@ public class playerMovement : MonoBehaviour
     {
         body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         hasJumped = true;
-    }
 
-    void Flip()
-    {
-
+        animator.SetBool("isJumping", true);
     }
+    
 
     void deathMovement()
     {
