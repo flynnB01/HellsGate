@@ -92,7 +92,7 @@ public class character : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            HealPlayer(20);
+            ReceiveHealth(20);
             Debug.Log("Healed Player");
         }
     }
@@ -113,7 +113,7 @@ public class character : MonoBehaviour
         }
     }
 
-    public void HealPlayer(int healAmount) // For healing scripts
+    public void ReceiveHealth(int healAmount) // For healing scripts
     {
         currentHp += healAmount;
         if (currentHp > maxHp)
