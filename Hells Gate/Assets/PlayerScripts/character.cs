@@ -186,4 +186,13 @@ IEnumerator StartRegeneratingEnergy()
         position.z = data.position[2];
         transform.position = position;
     }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Respawn"))
+        {
+            SavePlayer();
+            Debug.Log("Game Saved at Checkpoint!");
+        }
+    }
 }

@@ -29,6 +29,8 @@ public class playerMovement : MonoBehaviour
     private float dashEndTime = 0f;
     private float lastDashTime = -100f;
 
+    public bool canMove = true;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -42,7 +44,7 @@ public class playerMovement : MonoBehaviour
         float yinput = Input.GetAxis("Vertical");
 
         // Move the player horizontally
-        if (Mathf.Abs(xinput) > 0 && !isDashing)
+        if (Mathf.Abs(xinput) > 0 && !isDashing && canMove)
         {
             //Debug.Log(xinput);
             transform.localScale = new Vector3(xinput, 1, 1);
@@ -51,7 +53,7 @@ public class playerMovement : MonoBehaviour
         }
 
         // Dash mechanic
-        if (Input.GetButtonDown("Dash") && canDash)
+        if (Input.GetButtonDown("Dash") && canDash && canMove)
         {
             StartDash(xinput);
         }
@@ -63,7 +65,7 @@ public class playerMovement : MonoBehaviour
         }
 
         // Jumping logic
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && canMove)
         {
             if (grounded)
             {
@@ -169,5 +171,15 @@ public class playerMovement : MonoBehaviour
     {
         moveSpeed = 0;
         body.velocity = Vector2.zero;
+    }
+
+    public void enableMovement()
+    {
+    canMove = true;
+    }
+
+    public void disableMovement()
+    {
+    canMove = false;
     }
 }
