@@ -5064,6 +5064,8 @@ MonoBehaviour:
   isDead: 0
   energyRegenRate: 1
   canRegen: 1
+  regenCooldown: 5
+  startRegenCooldown: 0
   healthBar: {fileID: 474433044}
   energyBar: {fileID: 1766014138}
   gameManager: {fileID: 1951474907}

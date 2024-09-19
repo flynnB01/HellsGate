@@ -10,7 +10,7 @@ public class character : MonoBehaviour
     public bool isDead = false; // checks if player is dead
     public float energyRegenRate = 1f;
     public bool canRegen = true;
-    public float regenCooldown = 20f;
+    public float regenCooldown = 5f;
     public bool startRegenCooldown = false;
     private bool isRegeneratingEnergy = false;
 
@@ -146,14 +146,6 @@ public class character : MonoBehaviour
         }
     }
 
-    IEnumerator EnergyRegen() // Slow energy regeneration
-    {
-        for (int energy = currentEn; energy <= MaxEn; energy += 1){ // Loops through energy and regens until max energy
-            currentEn = energy; // Takes in loop variable and equals it to game variable
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
-        currentEn = MaxEn; // Set current energy to max after loop finishes
-    }
 
 IEnumerator EnergyRegenCooldown()
 {
