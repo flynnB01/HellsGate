@@ -3948,6 +3948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 640719133}
+  - component: {fileID: 640719134}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -3978,6 +3979,19 @@ RectTransform:
   m_AnchoredPosition: {x: -96.60441, y: 9.125947}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &640719134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640719132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63d0e0f4c0d752142926d7db4b04e463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 24100000, guid: 85f806674ad90a84e89110deaf6438ec, type: 2}
 --- !u!1 &650747144
 GameObject:
   m_ObjectHideFlags: 0
@@ -6769,12 +6783,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 347127448}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 20
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 640719134}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: SetVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1351498558
 GameObject:
   m_ObjectHideFlags: 0
