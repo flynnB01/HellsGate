@@ -83,6 +83,7 @@ public class character : MonoBehaviour
     {
         //health bar level is checked on update instead of in take damage to can be set to proper level after loading game
         healthBar.SetHealth(currentHp);
+
         /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -142,5 +143,14 @@ public class character : MonoBehaviour
         position.y = data.position[1];
         position.z = data.position[2];
         transform.position = position;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Respawn"))
+        {
+            SavePlayer();
+            Debug.Log("Game Saved at Checkpoint!");
+        }
     }
 }
