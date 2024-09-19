@@ -187,12 +187,39 @@ IEnumerator StartRegeneratingEnergy()
         transform.position = position;
     }
 
+    //called if player chooses to reload from last save after dying
+    public void Respawn()
+    {
+        isDead = false;
+        Time.timeScale = 1;
+
+        //loads player data
+        playerData data = SaveSystem.LoadPlayer();
+
+        currentHp = data.currentHp;
+        currentExp = data.currentExp;
+        currentLv = data.currentLv;
+
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+    }
+
+    //saves game when player collides with a object with the tag 'respawn'/ a checkpoint
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Respawn"))
         {
             SavePlayer();
-            Debug.Log("Game Saved at Checkpoint!");
+            Debug.Log("Game saved at checkpoint");
+        }
+
+        if (collider.gameObject.CompareTag("DeathBox"))
+        {
+            TakeDamage(99999);
+            Debug.Log("Player fell out of world");
         }
     }
 }

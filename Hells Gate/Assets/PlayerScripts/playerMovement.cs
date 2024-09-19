@@ -89,7 +89,8 @@ public class playerMovement : MonoBehaviour
 
         if (characterScript.isDead == true)
         {
-            deathMovement(); // Player stops moving when dead
+            //deathMovement(); // Player stops moving when dead
+            Time.timeScale = 0; //changed so player cant change directions in deathMenu and can easily respawn
         }
     }
 

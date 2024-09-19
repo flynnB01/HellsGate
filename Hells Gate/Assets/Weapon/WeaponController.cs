@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-     Animator ani;
+    public Animator ani;
     public GameObject atkPos;//attack start spot
     bool isAtk;//check able to attack
     public GameObject[] Weapons;//weapon lists
+
     // Start is called before the first frame update
     void Start()
     {
-        ani = transform.Find("PlayerSprite").GetComponent<Animator>();//play attack animation
+        ani = GetComponent<Animator>();//play attack animation
         ChageWeapon(1);//weapon change
       
         isAtk = true;
@@ -24,9 +25,9 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")&&isAtk) // check if attack
+        if (Input.GetButtonDown("Fire1") && isAtk) // check if attack
         {
-       
+            Debug.Log("Attack");
             Attack(); // invoke attack
         }
     }
