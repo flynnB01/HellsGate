@@ -32,6 +32,4 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("menu"); // Loads main menu
     }
-
-
 }
