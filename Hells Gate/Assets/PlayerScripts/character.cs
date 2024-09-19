@@ -6,10 +6,16 @@ using UnityEngine.SceneManagement;
 public class character : MonoBehaviour
 {
     // initialize player lvl stats, ( can be given value in unity )
-    [SerializeField] public int currentHp, maxHp, currentExp, maxExp, currentLv;
+    [SerializeField] public int currentHp, maxHp, currentExp, maxExp, currentLv, currentEn, MaxEn;
     public bool isDead = false; // checks if player is dead
+    public float energyRegenRate = 1f;
+    public bool canRegen = true;
+    public float regenCooldown = 20f;
+    public bool startRegenCooldown = false;
+    private bool isRegeneratingEnergy = false;
 
-    public HealthBar healthBar;
+    public HealthBar healthBar; // Energy Bar health object
+    public EnergyBar energyBar; // Energy Bar slider object
     public GameManager gameManager;
 
     void Start()
@@ -83,6 +89,7 @@ public class character : MonoBehaviour
     {
         //health bar level is checked on update instead of in take damage to can be set to proper level after loading game
         healthBar.SetHealth(currentHp);
+        energyBar.SetEnergy(currentEn);
         /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -90,11 +97,28 @@ public class character : MonoBehaviour
         }
         */
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && currentEn >= 20)
         {
             ReceiveHealth(20);
             Debug.Log("Healed Player");
+            currentEn -= 20;
+            canRegen = false;
+            startRegenCooldown = true;
+            StartCoroutine(EnergyRegenCooldown());
+            
         }
+
+        if (Input.GetKeyDown(KeyCode.E) && currentEn < 20)
+        {
+            Debug.Log("Not enough energy");
+        }
+
+        // Check if the cooldown is active and if energy regeneration is needed
+    if (!startRegenCooldown && currentEn < MaxEn && !isRegeneratingEnergy)
+    {
+        StartCoroutine(StartRegeneratingEnergy());
+    }
+
     }
     public void TakeDamage(int damage) // deals damage to player, argument is how much damage is dealt
     {
@@ -122,6 +146,33 @@ public class character : MonoBehaviour
         }
     }
 
+    IEnumerator EnergyRegen() // Slow energy regeneration
+    {
+        for (int energy = currentEn; energy <= MaxEn; energy += 1){ // Loops through energy and regens until max energy
+            currentEn = energy; // Takes in loop variable and equals it to game variable
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        currentEn = MaxEn; // Set current energy to max after loop finishes
+    }
+
+IEnumerator EnergyRegenCooldown()
+{
+    startRegenCooldown = true; // Activate cooldown flag
+    yield return new WaitForSeconds(regenCooldown); // Wait for the cooldown period
+    startRegenCooldown = false; // Reset the cooldown flag
+}
+
+IEnumerator StartRegeneratingEnergy()
+{
+    isRegeneratingEnergy = true; // Set the flag to true to prevent re-entry
+    while (currentEn < MaxEn)
+    {
+        currentEn += 1; // Increment energy
+        yield return new WaitForSeconds(energyRegenRate); // Wait for the defined regeneration rate
+    }
+    currentEn = MaxEn; // Ensure we cap it at MaxEn
+    isRegeneratingEnergy = false; // Set the flag to true to prevent re-entry
+}
     public void SavePlayer()
     {
         //saves player data
