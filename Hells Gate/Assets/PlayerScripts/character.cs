@@ -17,6 +17,7 @@ public class character : MonoBehaviour
     public HealthBar healthBar; // Energy Bar health object
     public EnergyBar energyBar; // Energy Bar slider object
     public GameManager gameManager;
+    public int sceneID;
 
     void Start()
     {
@@ -90,6 +91,8 @@ public class character : MonoBehaviour
         //health bar level is checked on update instead of in take damage to can be set to proper level after loading game
         healthBar.SetHealth(currentHp);
         energyBar.SetEnergy(currentEn);
+
+        sceneID = SceneManager.GetActiveScene().buildIndex;
         /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -146,7 +149,6 @@ public class character : MonoBehaviour
         }
     }
 
-
 IEnumerator EnergyRegenCooldown()
 {
     startRegenCooldown = true; // Activate cooldown flag
@@ -176,6 +178,8 @@ IEnumerator StartRegeneratingEnergy()
         //loads player data
         playerData data = SaveSystem.LoadPlayer();
 
+        SceneManager.LoadScene(sceneID);
+
         currentHp = data.currentHp;
         currentExp = data.currentExp;
         currentLv = data.currentLv;
@@ -195,6 +199,8 @@ IEnumerator StartRegeneratingEnergy()
 
         //loads player data
         playerData data = SaveSystem.LoadPlayer();
+
+        SceneManager.LoadScene(data.sceneID);
 
         currentHp = data.currentHp;
         currentExp = data.currentExp;
