@@ -13,12 +13,14 @@ public class playerMovement : MonoBehaviour
     public float airDecay;
     public BoxCollider2D groundCheck;
     public LayerMask groundMask;
-    private bool grounded;
+    private bool grounded; // checks if player has touched the ground
     private bool doubleJump;
     private bool hasJumped;
+    private bool readyToLand; // makes sure landing sound effect does not loop when touching the ground
 
     public Animator animator;
     private character characterScript;
+    public new SFXPlayer audio;
 
     // Dash Variables
     public float dashSpeedMultiplier = 5f;
@@ -36,6 +38,7 @@ public class playerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         characterScript = GetComponent<character>();
         animator = GetComponentInChildren<Animator>();
+        audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<SFXPlayer>();
     }
 
     void Update()
@@ -47,9 +50,8 @@ public class playerMovement : MonoBehaviour
         if (Mathf.Abs(xinput) > 0 && !isDashing && canMove)
         {
             //Debug.Log(xinput);
-            transform.localScale = new Vector3(xinput, 1, 1);
+            transform.localScale = new Vector3(xinput, 1, 1); // flip character
             body.velocity = new Vector2(xinput * moveSpeed, body.velocity.y);
-
         }
 
         // Dash mechanic
@@ -109,7 +111,15 @@ public class playerMovement : MonoBehaviour
             if (body.velocity.y == 0) // checks if player has fully stopped moving/ touched down on the ground
             {
                 animator.SetBool("isJumping", false); // falling animation stops
+                if (readyToLand)
+                {
+                    audio.PlaySFX(audio.sfx03); // play landing audio
+                    readyToLand = false;
+
+                }
             }
+
+           
 
         }
         else
@@ -163,10 +173,13 @@ public class playerMovement : MonoBehaviour
     {
         body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         hasJumped = true;
+        readyToLand = true;
 
-        animator.SetBool("isJumping", true);
+
+        animator.SetBool("isJumping", true); // jump animation frame
+        audio.PlaySFX(audio.sfx02); // play jump audio
     }
-    
+
 
     void deathMovement()
     {
