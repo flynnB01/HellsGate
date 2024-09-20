@@ -4717,12 +4717,12 @@ GameObject:
   - component: {fileID: 930097735}
   - component: {fileID: 930097734}
   m_Layer: 5
-  m_Name: TextCanvas
+  m_Name: LevelUpCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &930097734
 MonoBehaviour:
   m_ObjectHideFlags: 0
