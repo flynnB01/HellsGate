@@ -11,7 +11,8 @@ public class enemy : MonoBehaviour
 
     void Death() // when enemy dies
     {
-        expManager.Instance.AddExp(expValue);
+        if (expManager.Instance)
+            expManager.Instance.AddExp(expValue);
         Destroy(gameObject);
         Debug.Log("die");
     }
@@ -19,10 +20,11 @@ public class enemy : MonoBehaviour
     {
         Debug.Log("enemy damage taken");
         hp -= damage;
-        enemyHpBar.SetHealth(hp);
+        
         if (hp <= 0) {
             Death();
         }
+        enemyHpBar.SetHealth(hp);
     }
 
     
