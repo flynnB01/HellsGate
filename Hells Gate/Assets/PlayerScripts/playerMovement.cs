@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class playerMovement : MonoBehaviour
 {
@@ -114,7 +115,7 @@ public class playerMovement : MonoBehaviour
                 if (readyToLand)
                 {
                     audio.PlaySFX(audio.sfx03); // play landing audio
-                    readyToLand = false;
+                    readyToLand = false; // prevents sound from being looped
 
                 }
             }
@@ -128,6 +129,11 @@ public class playerMovement : MonoBehaviour
             {
                 body.velocity = new Vector2(body.velocity.x * airDecay, body.velocity.y);
             }
+        }
+
+        if (body.velocity.y < 0) // if player is descending
+        {
+            readyToLand = true;
         }
 
         animator.SetFloat("x_vel", Mathf.Abs(body.velocity.x));
@@ -173,7 +179,6 @@ public class playerMovement : MonoBehaviour
     {
         body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         hasJumped = true;
-        readyToLand = true;
 
 
         animator.SetBool("isJumping", true); // jump animation frame
