@@ -40,7 +40,6 @@ public class playerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         characterScript = GetComponent<character>();
         animator = GetComponentInChildren<Animator>();
-        audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<SFXPlayer>();
     }
 
     void Update()
