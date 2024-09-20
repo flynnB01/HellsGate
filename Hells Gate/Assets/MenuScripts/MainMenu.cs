@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Game Start");
         //game starts and case '3' is activated
         loadSavedGame = 3;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        SceneManager.LoadScene("tutorial area");
         Time.timeScale = 1;
     }
 
@@ -29,8 +29,14 @@ public class MainMenu : MonoBehaviour
         playerData data = SaveSystem.LoadPlayer();
 
         SceneManager.LoadScene(data.sceneID);
-        
+
         Debug.Log("Game Loaded");
         loadSavedGame = 2;
+    }
+
+    public void LoadTest()
+    {
+        Debug.Log("Game Loaded");
+        SceneManager.LoadScene("test area");
     }
 }
