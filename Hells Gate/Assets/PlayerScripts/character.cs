@@ -95,7 +95,7 @@ public class character : MonoBehaviour
         expBar.IncreaseMaxExp(100);
         healthBar.IncreaseMaxHealth(maxHp);
         energyBar.IncreaseMaxEnergy(MaxEn);
-        playableDirector.Play();
+        playableDirector.Play(); // Plays cutscene
     }
 
     void Update()
