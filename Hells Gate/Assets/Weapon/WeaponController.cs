@@ -7,7 +7,6 @@ public class WeaponController : MonoBehaviour
     public Animator ani;
     public GameObject atkPos;//attack start spot
     bool isAtk;//check able to attack
-    public GameObject[] Weapons;//weapon lists
 
     // Start is called before the first frame update
     void Start()
