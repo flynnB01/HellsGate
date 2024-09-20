@@ -16,6 +16,8 @@ public class character : MonoBehaviour
 
     public HealthBar healthBar; // Energy Bar health object
     public EnergyBar energyBar; // Energy Bar slider object
+
+    public ExpBar expBar; // Energy Bar slider object
     public GameManager gameManager;
     public int sceneID;
 
@@ -81,9 +83,16 @@ public class character : MonoBehaviour
         maxHp += 20; // increases characters maximum health points
         currentHp = maxHp; // regains hp after levelling up
 
+        MaxEn += 50; // increase character energy points
+        currentEn = MaxEn; // regain energy after level up
+
+
         currentExp = 0; // resets current exp
 
         maxExp += 100; // sets new exp milestone
+        expBar.IncreaseMaxExp(100);
+        healthBar.IncreaseMaxHealth(maxHp);
+        energyBar.IncreaseMaxEnergy(MaxEn);
     }
 
     void Update()
@@ -93,6 +102,7 @@ public class character : MonoBehaviour
         energyBar.SetEnergy(currentEn);
 
         sceneID = SceneManager.GetActiveScene().buildIndex;
+        expBar.SetExp(currentExp);
         /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -108,6 +118,13 @@ public class character : MonoBehaviour
             canRegen = false;
             startRegenCooldown = true;
             StartCoroutine(EnergyRegenCooldown());
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            HandleExpChange(20); // Temporary
+            Debug.Log("Gained XP"); // Temporary
             
         }
 
