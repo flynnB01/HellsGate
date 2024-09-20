@@ -101,8 +101,8 @@ public class character : MonoBehaviour
         healthBar.SetHealth(currentHp);
         energyBar.SetEnergy(currentEn);
 
-        expBar.SetExp(currentExp);
         sceneID = SceneManager.GetActiveScene().buildIndex;
+        expBar.SetExp(currentExp);
         /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
