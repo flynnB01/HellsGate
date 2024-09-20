@@ -23,6 +23,8 @@ public class playerMovement : MonoBehaviour
     private character characterScript;
     public new SFXPlayer audio;
 
+    public DashBar dashBar;
+
     // Dash Variables
     public float dashSpeedMultiplier = 5f;
     public float dashDuration = 0.2f;
@@ -45,6 +47,18 @@ public class playerMovement : MonoBehaviour
     {
         float xinput = Input.GetAxis("Horizontal");
         float yinput = Input.GetAxis("Vertical");
+
+        if (!canDash)
+        {
+            float remainingCooldown = lastDashTime + dashCooldown - Time.time;
+            dashBar.SetCooldown(Mathf.Clamp(remainingCooldown, 0, dashCooldown));
+            dashBar.gameObject.SetActive(true);
+        }
+
+        if (canDash)
+        {
+            dashBar.gameObject.SetActive(false);
+        }
 
         // Move the player horizontally
         if (Mathf.Abs(xinput) > 0 && !isDashing && canMove)

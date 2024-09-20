@@ -6,7 +6,8 @@ public class enemy : MonoBehaviour
 {
     // init enemy stats
     public int expValue;
-    public float hp=10;
+    public int hp=10;
+    public HealthBar enemyHpBar;
 
     void Death() // when enemy dies
     {
@@ -14,10 +15,11 @@ public class enemy : MonoBehaviour
         Destroy(gameObject);
         Debug.Log("die");
     }
-   public void takeDmg(float damage)// enemy lose hp 
+   public void takeDmg(int damage)// enemy lose hp 
     {
         Debug.Log("enemy damage taken");
         hp -= damage;
+        enemyHpBar.SetHealth(hp);
         if (hp <= 0) {
             Death();
         }

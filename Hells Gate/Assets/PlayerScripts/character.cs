@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 public class character : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class character : MonoBehaviour
 
     public ExpBar expBar; // Energy Bar slider object
     public GameManager gameManager;
+    [SerializeField] private PlayableDirector playableDirector;
     public int sceneID;
 
     void Start()
@@ -93,6 +95,7 @@ public class character : MonoBehaviour
         expBar.IncreaseMaxExp(100);
         healthBar.IncreaseMaxHealth(maxHp);
         energyBar.IncreaseMaxEnergy(MaxEn);
+        playableDirector.Play();
     }
 
     void Update()
