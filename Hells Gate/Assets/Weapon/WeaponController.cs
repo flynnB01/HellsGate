@@ -12,7 +12,7 @@ public class WeaponController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ani = GetComponent<Animator>();//play attack animation
+        ani = GetComponent<Animator>();
         ChageWeapon(1);//weapon change
       
         isAtk = true;
@@ -28,6 +28,7 @@ public class WeaponController : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && isAtk) // check if attack
         {
             Debug.Log("Attack");
+            ani.Play("P_sword");
             Attack(); // invoke attack
         }
     }
@@ -37,7 +38,7 @@ public class WeaponController : MonoBehaviour
     void Attack()//attack 
     {
         //play attack animation
-        ani.SetFloat("attack", 1);
+        ani.SetBool("attack", true);
         //attack box visible when attack
         atkPos.SetActive(true);
         isAtk = false;
@@ -47,9 +48,9 @@ public class WeaponController : MonoBehaviour
     }
     IEnumerator WaitAtk()//time wait for next attack
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         atkPos.SetActive(false);
-        ani.SetFloat("attack", 0);
+        ani.SetBool("attack", false);
         isAtk = true;
     }
 

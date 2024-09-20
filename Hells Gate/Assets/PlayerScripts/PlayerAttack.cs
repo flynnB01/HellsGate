@@ -33,4 +33,9 @@ public class PlayerAttack : MonoBehaviour
     {
         collision.GetComponent<enemy>().takeDmg(10);
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        collision.GetComponent<enemy>().takeDmg(10);
+    }
 }
