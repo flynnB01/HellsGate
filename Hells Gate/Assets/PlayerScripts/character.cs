@@ -19,7 +19,7 @@ public class character : MonoBehaviour
     public EnergyBar energyBar; // Energy Bar slider object
 
     public ExpBar expBar; // Energy Bar slider object
-    public GameManager gameManager;
+    public GameManager gameManager; // save scripts
     [SerializeField] private PlayableDirector playableDirector;
     public int sceneID;
 
@@ -72,7 +72,7 @@ public class character : MonoBehaviour
         currentExp += newExp;
         if (currentExp >= maxExp) // once current exp reaches level milestone
         {
-            // TODO - update ui
+            
             LevelUp();
         }
     }
