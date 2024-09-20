@@ -31,7 +31,6 @@ public class playerMovement : MonoBehaviour
     private bool isDashing;
     private float dashEndTime = 0f;
     private float lastDashTime = -100f;
-
     public bool canMove = true;
 
     void Start()
