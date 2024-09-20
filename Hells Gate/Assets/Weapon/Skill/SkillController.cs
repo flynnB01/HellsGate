@@ -36,7 +36,7 @@ public class SkillController : MonoBehaviour
             skill.transform.localPosition = Vector3.zero;
             skills[0].Skill();//which skill in skill lists
             cooldown[0] = skills[0].cd;
-                StartCoroutine(waitCoolDown(0, skills[0].cd));
+               StartCoroutine(waitCoolDown(0, skills[0].cd));
             }
         }
         
@@ -45,7 +45,7 @@ public class SkillController : MonoBehaviour
     IEnumerator waitCoolDown(int id,float cd)//cd system
     {
     
-        while (cooldown[id] <= 0)//shows cd 
+        while (cooldown[id] >= 0)//shows cd 
         {
             yield return new WaitForSeconds(0.1f);
             cooldown[id] -= 0.1f;

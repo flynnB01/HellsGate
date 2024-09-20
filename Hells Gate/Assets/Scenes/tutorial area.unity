@@ -9946,7 +9946,6 @@ GameObject:
   - component: {fileID: 1829466348}
   - component: {fileID: 1829466347}
   - component: {fileID: 1829466346}
-  - component: {fileID: 1829466345}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -10175,21 +10174,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1829466345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1829466336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d16ee92d054ae47abb1bdff0564496, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mana: 0
-  damage: 50
-  cd: 6
 --- !u!114 &1829466346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10202,11 +10186,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecbeec9a27f9e6947a4aa1f5146564ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPoint: {fileID: 547159017}
+  initialPoint: {fileID: 1829466342}
   skills:
   - {fileID: 678702529722814106, guid: 3e8434d3f44d93c4d866b688f812d8cb, type: 3}
   cooldown:
-  - 5
+  - 0
 --- !u!114 &1829466347
 MonoBehaviour:
   m_ObjectHideFlags: 0
