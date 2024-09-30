@@ -20,6 +20,7 @@ public class character : MonoBehaviour
 
     public ExpBar expBar; // Energy Bar slider object
     public GameManager gameManager; // save scripts
+    public difficulty difficultyScript;//manages difficulty
     [SerializeField] private PlayableDirector playableDirector;
 
     void Start()
@@ -136,6 +137,16 @@ public class character : MonoBehaviour
     }
     public void TakeDamage(int damage) // deals damage to player, argument is how much damage is dealt
     {
+        if(difficultyScript.isEasy){
+            damage = (int)(damage * 0.7f);
+        }
+        
+        if(difficultyScript.isHard){
+            damage = (int)(damage * 1.5f);
+        }
+
+        Debug.Log("Damage taken: " + damage);
+
         currentHp -= damage;
         if (currentHp <= 0 && !isDead) // kills player
         {

@@ -8,6 +8,7 @@ public class enemy : MonoBehaviour
     public int expValue;
     public int hp=10;
     public HealthBar enemyHpBar;
+    public difficulty difficultyScript;//manages difficulty
 
     void Death() // when enemy dies
     {
@@ -18,6 +19,14 @@ public class enemy : MonoBehaviour
     }
    public void takeDmg(int damage)// enemy lose hp 
     {
+        if(difficultyScript.isEasy){
+            damage = (int)(damage * 1.3f);
+        }
+        
+        if(difficultyScript.isHard){
+            damage = (int)(damage * 0.6f);
+        }
+
         Debug.Log("enemy damage taken");
         hp -= damage;
         
