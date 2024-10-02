@@ -105,7 +105,7 @@ public class character : MonoBehaviour
         }
         */
 
-        if (Input.GetKeyDown(KeyCode.E) && currentEn >= 20)
+        if (Input.GetKeyDown(KeyCode.H) && currentEn >= 20)
         {
             ReceiveHealth(20);
             Debug.Log("Healed Player");
@@ -123,7 +123,7 @@ public class character : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && currentEn < 20)
+        if (Input.GetKeyDown(KeyCode.H) && currentEn < 20)
         {
             Debug.Log("Not enough energy");
         }
@@ -137,11 +137,6 @@ public class character : MonoBehaviour
     }
     public void TakeDamage(int damage) // deals damage to player, argument is how much damage is dealt
     {
-        if (difficultyScript == null)
-    {
-        Debug.LogError("Difficulty script not assigned!");
-        return;
-    }
         if(difficultyScript.isEasy){
             damage = (int)(damage * 0.7f);
         }

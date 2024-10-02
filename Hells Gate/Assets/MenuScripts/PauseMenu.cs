@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuScript : MonoBehaviour
 {
-    bool gamePaused = false;
+    public bool gamePaused = false;
     [SerializeField] GameObject pauseMenu;
+    public GameManager gameManager;
+    public GameObject StatPageUI;
 
     void Start()
     {
@@ -17,14 +19,14 @@ public class PauseMenuScript : MonoBehaviour
     }
 
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && gamePaused == false)
+    {//enables/disables the pause menu 
+        if (Input.GetKeyDown(KeyCode.Escape) && gamePaused == false  && StatPageUI.activeSelf == false)
         {
             Time.timeScale = 0;
             gamePaused = true;
-            pauseMenu.SetActive(true);
+            gameManager.pauseMenuActive();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && gamePaused == true)
+        else if (Input.GetKeyDown(KeyCode.Escape) && gamePaused == true && StatPageUI.activeSelf == false)
         {
             Time.timeScale = 1;
             gamePaused = false;
