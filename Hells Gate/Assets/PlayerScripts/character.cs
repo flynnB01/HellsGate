@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 public class character : MonoBehaviour
 {
     // initialize player lvl stats, ( can be given value in unity )
-    [SerializeField] public int currentHp, maxHp, currentExp, maxExp, currentLv, currentEn, maxEn, sceneID;
+    [SerializeField] public int currentHp, maxHp, currentExp, maxExp, currentLv, currentEn, maxEn, sceneID, skillPoints;
     public bool isDead = false; // checks if player is dead
     public float energyRegenRate = 1f;
     public bool canRegen = true;
@@ -73,13 +73,13 @@ public class character : MonoBehaviour
     {
         // TODO - level up other stats (STR, DEF etc)
         currentLv += 1; // lvl up
+        skillPoints += 3;
 
-        maxHp += 20; // increases characters maximum health points
+        //maxHp += 20; // increases characters maximum health points
         currentHp = maxHp; // regains hp after levelling up
 
-        maxEn += 50; // increase character energy points
+        //maxEn += 50; // increase character energy points
         currentEn = maxEn; // regain energy after level up
-
 
         currentExp = 0; // resets current exp
 
@@ -118,7 +118,7 @@ public class character : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            HandleExpChange(20); // Temporary
+            HandleExpChange(100); // Temporary
             Debug.Log("Gained XP"); // Temporary
 
         }
