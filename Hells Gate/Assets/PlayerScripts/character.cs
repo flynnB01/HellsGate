@@ -137,6 +137,11 @@ public class character : MonoBehaviour
     }
     public void TakeDamage(int damage) // deals damage to player, argument is how much damage is dealt
     {
+        if (difficultyScript == null)
+    {
+        Debug.LogError("Difficulty script not assigned!");
+        return;
+    }
         if(difficultyScript.isEasy){
             damage = (int)(damage * 0.7f);
         }
@@ -240,8 +245,8 @@ public class character : MonoBehaviour
 
         if (collider.gameObject.CompareTag("DeathBox"))
         {
-            TakeDamage(99999);
-            Debug.Log("Player fell out of world");
+            TakeDamage(9999);
+            Debug.Log("Player touched a deathbox");
         }
     }
 }
