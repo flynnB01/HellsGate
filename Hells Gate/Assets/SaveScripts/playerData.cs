@@ -14,6 +14,9 @@ public class playerData
     public int currentExp;
     public int maxExp;
     public int currentLv;
+    public int skillPoints;
+    public float moveSpeed;
+    public float jumpSpeed;
     public float[] position;
     
     public playerData(character player){
@@ -25,6 +28,9 @@ public class playerData
         currentExp = player.currentExp;
         maxExp = player.maxExp;
         currentLv = player.currentLv;
+        skillPoints = player.skillPoints;
+        moveSpeed = player.moveSpeed;
+        jumpSpeed = player.jumpSpeed;
 
         position = new float[3];
         position[0] = player.transform.position.x;

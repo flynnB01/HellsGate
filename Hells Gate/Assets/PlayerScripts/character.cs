@@ -21,6 +21,9 @@ public class character : MonoBehaviour
     public ExpBar expBar; // Energy Bar slider object
     public GameManager gameManager; // save scripts
     public difficulty difficultyScript;//manages difficulty
+    public playerMovement pm;
+    public float moveSpeed;
+    public float jumpSpeed;
     [SerializeField] private PlayableDirector playableDirector;
 
     void Start()
@@ -95,6 +98,10 @@ public class character : MonoBehaviour
         //health bar level is checked on update instead of in take damage to can be set to proper level after loading game
         healthBar.SetHealth(currentHp);
         energyBar.SetEnergy(currentEn);
+
+        moveSpeed = pm.moveSpeed;
+        jumpSpeed = pm.jumpSpeed;
+
 
         sceneID = SceneManager.GetActiveScene().buildIndex;
         expBar.SetExp(currentExp);
@@ -211,6 +218,9 @@ public class character : MonoBehaviour
         currentExp = data.currentExp;
         maxExp = data.maxExp;
         currentLv = data.currentLv;
+        skillPoints = data.skillPoints;
+        pm.moveSpeed = data.moveSpeed;
+        pm.jumpSpeed = data.jumpSpeed;
 
         Vector3 position;
         position.x = data.position[0];

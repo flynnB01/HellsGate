@@ -13,5 +13,8 @@ public static class gameData
     public static int currentExp;
     public static int maxExp;
     public static int currentLv;
+    public static int skillPoints;
+    public static float moveSpeed;
+    public static float jumpSpeed;
     public static Vector3 position;
 }

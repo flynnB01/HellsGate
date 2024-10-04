@@ -131,9 +131,6 @@ public class playerMovement : MonoBehaviour
 
                 }
             }
-
-           
-
         }
         else
         {
@@ -150,9 +147,6 @@ public class playerMovement : MonoBehaviour
 
         animator.SetFloat("x_vel", Mathf.Abs(body.velocity.x));
         animator.SetFloat("y_vel", body.velocity.y);
-
-
-        
     }
 
     void CheckGround()

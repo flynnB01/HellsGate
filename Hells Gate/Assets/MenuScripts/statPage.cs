@@ -9,6 +9,7 @@ public class statPage : MonoBehaviour
     public GameManager gameManager;
     public GameObject pauseMenuUI;
     public character player;
+    public playerMovement pm;
     public bool gamePaused;
     public HealthBar healthBar;
     public EnergyBar energyBar;
@@ -33,11 +34,16 @@ public class statPage : MonoBehaviour
     TextMeshProUGUI skillPoints_text;
     TextMeshProUGUI health_text;
     TextMeshProUGUI energy_text;
+    TextMeshProUGUI strength_text;
+    TextMeshProUGUI agility_text;
+    TextMeshProUGUI luck_text;
 
-    
     
     TextMeshProUGUI newHealth_text;
     TextMeshProUGUI newEnergy_text;
+    TextMeshProUGUI newStrength_text;
+    TextMeshProUGUI newAgility_text;
+    TextMeshProUGUI newLuck_text;
     
 
     // Start is called before the first frame update
@@ -50,10 +56,15 @@ public class statPage : MonoBehaviour
 
         health_text = health.GetComponent<TextMeshProUGUI>();
         energy_text = energy.GetComponent<TextMeshProUGUI>();
-
+        strength_text = strength.GetComponent<TextMeshProUGUI>();
+        agility_text = agility.GetComponent<TextMeshProUGUI>();
+        luck_text = luck.GetComponent<TextMeshProUGUI>();
 
         newHealth_text = newHealth.GetComponent<TextMeshProUGUI>();
         newEnergy_text = newEnergy.GetComponent<TextMeshProUGUI>();
+        newStrength_text = newStrength.GetComponent<TextMeshProUGUI>();
+        newAgility_text = newAgility.GetComponent<TextMeshProUGUI>();
+        newLuck_text = newLuck.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -71,6 +82,12 @@ public class statPage : MonoBehaviour
             gamePaused = false;
             StatPage.SetActive(false);
         }
+        else if (Input.GetKeyDown(KeyCode.Escape) && gamePaused == true && pauseMenuUI.activeSelf == false)
+        {
+            Time.timeScale = 1;
+            gamePaused = false;
+            StatPage.SetActive(false);
+        }
 
         currentLevel_text.text = player.currentLv.ToString();
         skillPoints_text.text = player.skillPoints.ToString();
@@ -78,9 +95,13 @@ public class statPage : MonoBehaviour
         health_text.text = player.maxHp.ToString();
         energy_text.text = player.maxEn.ToString();
 
+        agility_text.text = (pm.moveSpeed).ToString();
+
 
         newHealth_text.text = (player.maxHp + 10).ToString();
         newEnergy_text.text = (player.maxEn + 10).ToString();
+
+        newAgility_text.text = (pm.moveSpeed + 1).ToString();
     }
 
     public void UpgradeHealth(){
@@ -96,6 +117,30 @@ public class statPage : MonoBehaviour
             player.maxEn += 10;
             player.skillPoints--;
             energyBar.IncreaseMaxEnergy(player.maxEn);
+        }
+    }
+
+    public void UpgradeStrength(){
+        if(player.skillPoints > 0){
+            
+            player.skillPoints--;
+            
+        }
+    }
+
+    public void UpgradeAgility(){
+        if(player.skillPoints > 0){
+            pm.moveSpeed += 1;
+            pm.jumpSpeed += 1;
+            player.skillPoints--;
+        }
+    }
+
+    public void UpgradeLuck(){
+        if(player.skillPoints > 0){
+            
+            player.skillPoints--;
+            
         }
     }
 }
