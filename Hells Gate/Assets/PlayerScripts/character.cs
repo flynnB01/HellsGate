@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 public class character : MonoBehaviour
 {
     // initialize player lvl stats, ( can be given value in unity )
-    [SerializeField] public int currentHp, maxHp, currentExp, maxExp, currentLv, currentEn, MaxEn;
+    [SerializeField] public int currentHp, maxHp, currentExp, maxExp, currentLv, currentEn, maxEn, sceneID, skillPoints;
     public bool isDead = false; // checks if player is dead
     public float energyRegenRate = 1f;
     public bool canRegen = true;
@@ -20,8 +20,11 @@ public class character : MonoBehaviour
 
     public ExpBar expBar; // Energy Bar slider object
     public GameManager gameManager; // save scripts
+    public difficulty difficultyScript;//manages difficulty
+    public playerMovement pm;
+    public float moveSpeed;
+    public float jumpSpeed;
     [SerializeField] private PlayableDirector playableDirector;
-    public int sceneID;
 
     void Start()
     {
@@ -32,15 +35,7 @@ public class character : MonoBehaviour
 
             if (data != null)
             {
-                currentHp = data.currentHp;
-                currentExp = data.currentExp;
-                currentLv = data.currentLv;
-
-                Vector3 position;
-                position.x = data.position[0];
-                position.y = data.position[1];
-                position.z = data.position[2];
-                transform.position = position;
+                LoadPlayer();
 
                 Debug.LogError("Game loaded successfully.");
             }
@@ -50,7 +45,7 @@ public class character : MonoBehaviour
             }
         }
         //case '3' is active so game loads and scene is immediatly reset
-        else if(MainMenu.loadSavedGame == 3)
+        else if (MainMenu.loadSavedGame == 3)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             MainMenu.loadSavedGame = 1;
@@ -72,7 +67,7 @@ public class character : MonoBehaviour
         currentExp += newExp;
         if (currentExp >= maxExp) // once current exp reaches level milestone
         {
-            
+
             LevelUp();
         }
     }
@@ -81,20 +76,20 @@ public class character : MonoBehaviour
     {
         // TODO - level up other stats (STR, DEF etc)
         currentLv += 1; // lvl up
+        skillPoints += 3;
 
-        maxHp += 20; // increases characters maximum health points
+        //maxHp += 20; // increases characters maximum health points
         currentHp = maxHp; // regains hp after levelling up
 
-        MaxEn += 50; // increase character energy points
-        currentEn = MaxEn; // regain energy after level up
-
+        //maxEn += 50; // increase character energy points
+        currentEn = maxEn; // regain energy after level up
 
         currentExp = 0; // resets current exp
 
         maxExp += 100; // sets new exp milestone
         expBar.IncreaseMaxExp(100);
         healthBar.IncreaseMaxHealth(maxHp);
-        energyBar.IncreaseMaxEnergy(MaxEn);
+        energyBar.IncreaseMaxEnergy(maxEn);
         playableDirector.Play(); // Plays cutscene
     }
 
@@ -103,6 +98,10 @@ public class character : MonoBehaviour
         //health bar level is checked on update instead of in take damage to can be set to proper level after loading game
         healthBar.SetHealth(currentHp);
         energyBar.SetEnergy(currentEn);
+
+        moveSpeed = pm.moveSpeed;
+        jumpSpeed = pm.jumpSpeed;
+
 
         sceneID = SceneManager.GetActiveScene().buildIndex;
         expBar.SetExp(currentExp);
@@ -113,7 +112,7 @@ public class character : MonoBehaviour
         }
         */
 
-        if (Input.GetKeyDown(KeyCode.E) && currentEn >= 20)
+        if (Input.GetKeyDown(KeyCode.H) && currentEn >= 20)
         {
             ReceiveHealth(20);
             Debug.Log("Healed Player");
@@ -121,34 +120,44 @@ public class character : MonoBehaviour
             canRegen = false;
             startRegenCooldown = true;
             StartCoroutine(EnergyRegenCooldown());
-            
+
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            HandleExpChange(20); // Temporary
+            HandleExpChange(100); // Temporary
             Debug.Log("Gained XP"); // Temporary
-            
+
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && currentEn < 20)
+        if (Input.GetKeyDown(KeyCode.H) && currentEn < 20)
         {
             Debug.Log("Not enough energy");
         }
 
         // Check if the cooldown is active and if energy regeneration is needed
-    if (!startRegenCooldown && currentEn < MaxEn && !isRegeneratingEnergy)
-    {
-        StartCoroutine(StartRegeneratingEnergy());
-    }
+        if (!startRegenCooldown && currentEn < maxEn && !isRegeneratingEnergy)
+        {
+            StartCoroutine(StartRegeneratingEnergy());
+        }
 
     }
     public void TakeDamage(int damage) // deals damage to player, argument is how much damage is dealt
     {
+        if(difficultyScript.isEasy){
+            damage = (int)(damage * 0.7f);
+        }
+        
+        if(difficultyScript.isHard){
+            damage = (int)(damage * 1.5f);
+        }
+
+        Debug.Log("Damage taken: " + damage);
+
         currentHp -= damage;
         if (currentHp <= 0 && !isDead) // kills player
         {
-            
+
             isDead = true;
             gameManager.gameOver(); // Brings up Gameover UI
             // Destroy(gameObject);
@@ -169,24 +178,24 @@ public class character : MonoBehaviour
         }
     }
 
-IEnumerator EnergyRegenCooldown()
-{
-    startRegenCooldown = true; // Activate cooldown flag
-    yield return new WaitForSeconds(regenCooldown); // Wait for the cooldown period
-    startRegenCooldown = false; // Reset the cooldown flag
-}
-
-IEnumerator StartRegeneratingEnergy()
-{
-    isRegeneratingEnergy = true; // Set the flag to true to prevent re-entry
-    while (currentEn < MaxEn)
+    IEnumerator EnergyRegenCooldown()
     {
-        currentEn += 1; // Increment energy
-        yield return new WaitForSeconds(energyRegenRate); // Wait for the defined regeneration rate
+        startRegenCooldown = true; // Activate cooldown flag
+        yield return new WaitForSeconds(regenCooldown); // Wait for the cooldown period
+        startRegenCooldown = false; // Reset the cooldown flag
     }
-    currentEn = MaxEn; // Ensure we cap it at MaxEn
-    isRegeneratingEnergy = false; // Set the flag to true to prevent re-entry
-}
+
+    IEnumerator StartRegeneratingEnergy()
+    {
+        isRegeneratingEnergy = true; // Set the flag to true to prevent re-entry
+        while (currentEn < maxEn)
+        {
+            currentEn += 1; // Increment energy
+            yield return new WaitForSeconds(energyRegenRate); // Wait for the defined regeneration rate
+        }
+        currentEn = maxEn; // Ensure we cap it at maxEn
+        isRegeneratingEnergy = false; // Set the flag to true to prevent re-entry
+    }
     public void SavePlayer()
     {
         //saves player data
@@ -198,11 +207,20 @@ IEnumerator StartRegeneratingEnergy()
         //loads player data
         playerData data = SaveSystem.LoadPlayer();
 
-        SceneManager.LoadScene(sceneID);
+        if(data.sceneID != sceneID){
+            SceneManager.LoadScene(data.sceneID);
+        }
 
         currentHp = data.currentHp;
+        maxHp = data.maxHp;
+        currentEn = data.currentEn;
+        maxEn = data.maxEn;
         currentExp = data.currentExp;
+        maxExp = data.maxExp;
         currentLv = data.currentLv;
+        skillPoints = data.skillPoints;
+        pm.moveSpeed = data.moveSpeed;
+        pm.jumpSpeed = data.jumpSpeed;
 
         Vector3 position;
         position.x = data.position[0];
@@ -218,19 +236,7 @@ IEnumerator StartRegeneratingEnergy()
         Time.timeScale = 1;
 
         //loads player data
-        playerData data = SaveSystem.LoadPlayer();
-
-        SceneManager.LoadScene(data.sceneID);
-
-        currentHp = data.currentHp;
-        currentExp = data.currentExp;
-        currentLv = data.currentLv;
-
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        transform.position = position;
+        LoadPlayer();
     }
 
     //saves game when player collides with a object with the tag 'respawn'/ a checkpoint
@@ -244,8 +250,8 @@ IEnumerator StartRegeneratingEnergy()
 
         if (collider.gameObject.CompareTag("DeathBox"))
         {
-            TakeDamage(99999);
-            Debug.Log("Player fell out of world");
+            TakeDamage(9999);
+            Debug.Log("Player touched a deathbox");
         }
     }
 }

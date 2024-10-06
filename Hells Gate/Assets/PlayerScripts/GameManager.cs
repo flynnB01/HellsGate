@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject gameOverUI;
+    public GameObject pauseMenu;
+    public GameObject statPage;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,14 @@ public class GameManager : MonoBehaviour
     public void gameOver()
     {
         gameOverUI.SetActive(true);
+    }
+    public void statPageActive()
+    {
+        statPage.SetActive(true);
+    }
+    public void pauseMenuActive()
+    {
+        pauseMenu.SetActive(true);
     }
 
     public void Restart()
