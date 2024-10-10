@@ -6,8 +6,8 @@ using UnityEngine.UIElements;
 public class playerMovement : MonoBehaviour
 {
     public Rigidbody2D body;
-    public float moveSpeed;
-    public float jumpSpeed;
+    [HideInInspector] public float moveSpeed;
+    [HideInInspector] public float jumpSpeed;
     [Range(0f, 1f)]
     public float groundDecay;
     [Range(0f, 1f)]
@@ -44,6 +44,11 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
+        // get speeds defined in character
+        moveSpeed = characterScript.moveSpeed;
+        jumpSpeed = characterScript.jumpSpeed;
+
+
         float xinput = Input.GetAxis("Horizontal");
         float yinput = Input.GetAxis("Vertical");
 
@@ -62,7 +67,8 @@ public class playerMovement : MonoBehaviour
         // Move the player horizontally
         if (Mathf.Abs(xinput) > 0 && !isDashing && canMove)
         {
-            //Debug.Log(xinput);
+            Debug.Log("Move");
+
             transform.localScale = new Vector3(xinput, 1, 1); // flip character
             body.velocity = new Vector2(xinput * moveSpeed, body.velocity.y);
         }
@@ -70,6 +76,8 @@ public class playerMovement : MonoBehaviour
         // Dash mechanic
         if (Input.GetButtonDown("Dash") && canDash && canMove)
         {
+            Debug.Log("Dash");
+
             StartDash(xinput);
         }
 
@@ -82,6 +90,8 @@ public class playerMovement : MonoBehaviour
         // Jumping logic
         if (Input.GetButtonDown("Jump") && canMove)
         {
+            Debug.Log("Jump");
+
             if (grounded)
             {
                 // First jump
