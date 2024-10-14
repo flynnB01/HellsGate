@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public BoxCollider2D box;
+    public enemy enemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,9 @@ public class PlayerAttack : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.GetComponent<enemy>().takeDmg(10);
+        if(collision.gameObject.Equals(enemy.gameObject))
+        {
+            enemy.takeDmg(10);
+        }
     }
 }
