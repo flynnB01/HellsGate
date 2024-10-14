@@ -2106,11 +2106,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259405296}
   m_CullTransparentMesh: 1
---- !u!4 &268236063 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6867956198747410559, guid: 7fc1eb08e7f2e864f8e4d5c079cbf88f, type: 3}
-  m_PrefabInstance: {fileID: 1117156400}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &277827656
 GameObject:
   m_ObjectHideFlags: 0
@@ -17666,4 +17661,3 @@ SceneRoots:
   - {fileID: 1154555692}
   - {fileID: 277827659}
   - {fileID: 930097737}
-  - {fileID: 1117156400}
