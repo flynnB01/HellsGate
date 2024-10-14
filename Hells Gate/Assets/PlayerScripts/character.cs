@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 public class character : MonoBehaviour
 {
     // initialize player lvl stats, ( can be given value in unity )
-    [SerializeField] public int currentHp, maxHp, currentExp, maxExp, currentLv, currentEn, maxEn, sceneID, skillPoints;
+    [SerializeField] public int currentHp, maxHp, currentExp, maxExp, currentLv, currentEn, maxEn, strength, luck,  sceneID, skillPoints;
     public bool isDead = false; // checks if player is dead
     public float energyRegenRate = 1f;
     public bool canRegen = true;
@@ -67,7 +67,6 @@ public class character : MonoBehaviour
         currentExp += newExp;
         if (currentExp >= maxExp) // once current exp reaches level milestone
         {
-
             LevelUp();
         }
     }
@@ -102,9 +101,9 @@ public class character : MonoBehaviour
         moveSpeed = pm.moveSpeed;
         jumpSpeed = pm.jumpSpeed;
 
-
         sceneID = SceneManager.GetActiveScene().buildIndex;
         expBar.SetExp(currentExp);
+        
         /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -150,6 +149,11 @@ public class character : MonoBehaviour
         
         if(difficultyScript.isHard){
             damage = (int)(damage * 1.5f);
+        }
+
+        int luckTest = Random.Range(0, 100);
+        if(luck > luckTest){
+            damage = 0;
         }
 
         Debug.Log("Damage taken: " + damage);
@@ -217,6 +221,8 @@ public class character : MonoBehaviour
         maxEn = data.maxEn;
         currentExp = data.currentExp;
         maxExp = data.maxExp;
+        strength = data.strength;
+        luck = data.luck;
         currentLv = data.currentLv;
         skillPoints = data.skillPoints;
         pm.moveSpeed = data.moveSpeed;

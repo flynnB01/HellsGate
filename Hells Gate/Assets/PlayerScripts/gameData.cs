@@ -12,6 +12,8 @@ public static class gameData
     public static int maxEn;
     public static int currentExp;
     public static int maxExp;
+    public static int strength;
+    public static int luck;
     public static int currentLv;
     public static int skillPoints;
     public static float moveSpeed;
