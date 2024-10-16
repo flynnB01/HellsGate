@@ -663,8 +663,8 @@ Transform:
   m_GameObject: {fileID: 437672951}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.82, y: -3.76, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalPosition: {x: 31.237, y: -1.74, z: 0}
+  m_LocalScale: {x: 10.0254, y: 10.0254, z: 1.6709}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 874469158}
@@ -684,6 +684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 608277483}
   moveSpeed: 1
+  isAttacking: 0
 --- !u!1 &442230565 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1734924293079983078, guid: 94a2bbbd505d4a84ba5a0eb701533ac4, type: 3}
@@ -1109,7 +1110,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874469157}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1270,6 +1271,10 @@ PrefabInstance:
       propertyPath: enemy
       value: 
       objectReference: {fileID: 904517502}
+    - target: {fileID: 4642563537726027208, guid: ec55acdaee2ac8b4caa43f126a6f0c2b, type: 3}
+      propertyPath: initialPoint
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5496477308186202141, guid: ec55acdaee2ac8b4caa43f126a6f0c2b, type: 3}
       propertyPath: audio
       value: 
@@ -1278,6 +1283,10 @@ PrefabInstance:
       propertyPath: dashBar
       value: 
       objectReference: {fileID: 2093000612}
+    - target: {fileID: 5496477308186202141, guid: ec55acdaee2ac8b4caa43f126a6f0c2b, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5602380806496804242, guid: ec55acdaee2ac8b4caa43f126a6f0c2b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.32
