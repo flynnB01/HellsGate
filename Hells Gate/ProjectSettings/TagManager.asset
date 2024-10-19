@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - DeathBox
+  - Boss
+  - Difficulty
   layers:
   - Default
   - TransparentFX
