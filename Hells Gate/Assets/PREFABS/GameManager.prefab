@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56da72b8a0efcb54694b4a6b9d1ede7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverUI: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  statPage: {fileID: 0}
+  gameOverUI: {fileID: 1734924293079983078, guid: 94a2bbbd505d4a84ba5a0eb701533ac4, type: 3}
+  pauseMenu: {fileID: 7002637841457086593, guid: 8f6d3398aadb8fc49b8b1718c076e333, type: 3}
+  statPage: {fileID: 634031517380178931, guid: 838f7f18797533140a8a23e58698c206, type: 3}

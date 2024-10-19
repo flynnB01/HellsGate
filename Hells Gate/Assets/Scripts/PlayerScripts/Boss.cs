@@ -1,13 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossAttack : MonoBehaviour
+public class Boss : MonoBehaviour
 {
-    public Transform player;
+    public Transform player; // drag player obj into inspector field
     private GameObject hitbox = default;
     private new PolygonCollider2D collider;
     private Animator anim;
+
+    public int hp = 100;
+    public int exp = 75;
+    public difficulty difficultyScript; // manages difficulty
 
     public float moveSpeed;
 
@@ -31,8 +36,10 @@ public class BossAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float aggroDistance = 20.0f; // distance where boss will see player
+
         // if player character is in sight of boss, will start attacking
-        
+
         if (isAggroed) // if player has boss aggro
         {
             if (!isAttacking) // makes sure boss cant attack while already attacking
@@ -84,7 +91,7 @@ public class BossAttack : MonoBehaviour
 
         } else
         {
-            if (Vector2.Distance(transform.position, player.position) < 10.0)
+            if (Vector2.Distance(transform.position, player.position) < aggroDistance)
             {
                 isAggroed = true;
 
@@ -103,4 +110,36 @@ public class BossAttack : MonoBehaviour
 
     }
 
+    public void takeDmg(int damage)
+    {
+        if (difficultyScript.isEasy)
+        {
+            damage = (int)(damage * 1.3f);
+        }
+
+        if (difficultyScript.isHard)
+        {
+            damage = (int)(damage * 0.6f);
+        }
+
+        Debug.Log("Boss taken damage");
+
+        hp -= damage;
+
+        if (hp <= 0)
+        {
+            Death();
+        }
+    }
+
+    private void Death()
+    {
+       
+       if(expManager.Instance)
+        {
+            expManager.Instance.AddExp(exp);
+        }
+        Destroy(gameObject);
+        Debug.Log("Boss Defeated");
+    }
 }

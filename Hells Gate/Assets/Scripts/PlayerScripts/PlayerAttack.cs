@@ -5,17 +5,12 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public BoxCollider2D box;
-    public enemy enemy;
-    // Start is called before the first frame update
-    void Start()
+    public GameObject enemy;
+   
+
+    private void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
     //when play attack, turn attackbox on
@@ -30,16 +25,23 @@ public class PlayerAttack : MonoBehaviour
         box.enabled = false;
     }
 
-    public void hitsEnemey(Collider2D collision)//if attack box detect enemy, dealt dmg
-    {
-        collision.GetComponent<enemy>().takeDmg(10);
-    }
+    //public void hitsEnemey(Collider2D collision)//if attack box detect enemy, dealt dmg
+    //{
+    //    collision.GetComponent<enemy>().takeDmg(10);
+    //}
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.Equals(enemy.gameObject))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            enemy.takeDmg(10);
+            collision.gameObject.GetComponent<enemy>().takeDmg(10);
+
         }
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            Boss boss = collision.gameObject.GetComponent<Boss>();  
+            boss.takeDmg(10); // TODO - change dmg value to correspond with player stats
+        }
+        
     }
 }

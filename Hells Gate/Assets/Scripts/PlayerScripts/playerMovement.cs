@@ -39,7 +39,7 @@ public class playerMovement : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         characterScript = GetComponent<character>();
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()

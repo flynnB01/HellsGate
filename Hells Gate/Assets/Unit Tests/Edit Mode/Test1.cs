@@ -12,7 +12,7 @@ public class Test1
     [Test]
     public void Test_BossAtkIsDefault()
     {
-        BossAttack boss = new(); // make new bossattack instance
+        Boss boss = new(); // make new BossAttack instance
 
         bool expected = false; // isAttacking should be false
 
@@ -20,6 +20,4 @@ public class Test1
         Assert.AreEqual(expected, boss.isAttacking);
 
     }
-
-
 }
