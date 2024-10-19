@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public BoxCollider2D box;
-    public GameObject enemy;
+    private BoxCollider2D box;
    
 
     private void Start()
     {
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        box = GetComponent<BoxCollider2D>();
     }
 
     //when play attack, turn attackbox on
