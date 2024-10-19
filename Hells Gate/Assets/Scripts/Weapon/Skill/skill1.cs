@@ -15,8 +15,7 @@ public class skill1 : SkillParent
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.GetComponent<enemy>()
-            .takeDmg((int)damage);
+            collision.GetComponent<enemy>().takeDmg((int)damage);
             Debug.Log("111111111111");
         }
         
