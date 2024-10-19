@@ -19,11 +19,11 @@ public class weaponState : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)//dealt dmg to enemy
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
+        //if (collision.gameObject.CompareTag("Enemy"))
+        //{
            
-            transform.parent.GetComponent<PlayerAttack>().hitsEnemey(collision);
-        }
+        //    transform.parent.GetComponent<PlayerAttack>().hitsEnemey(collision);
+        //}
     }
    
 }

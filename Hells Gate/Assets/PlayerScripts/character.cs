@@ -11,7 +11,7 @@ public class character : MonoBehaviour
     public bool isDead = false; // checks if player is dead
     public float energyRegenRate = 1f;
     public bool canRegen = true;
-    public float regenCooldown = 5f;
+    public float regenCooldown = 5.0f;
     public bool startRegenCooldown = false;
     private bool isRegeneratingEnergy = false;
 
