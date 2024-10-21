@@ -1735,7 +1735,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.24506009, y: -0.45660868}
+  m_Offset: {x: 0.24975598, y: -0.46135473}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1746,7 +1746,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5678227, y: 0.08178264}
+  m_Size: {x: 1.4627893, y: 0.04381323}
   m_EdgeRadius: 0
 --- !u!4 &237870093
 Transform:
@@ -1897,37 +1897,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238260108}
   m_CullTransparentMesh: 1
---- !u!1 &252380566
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 252380567}
-  m_Layer: 6
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &252380567
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 252380566}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1, y: 0.58, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1829466342}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &257298795
 GameObject:
   m_ObjectHideFlags: 0
@@ -12946,7 +12915,7 @@ GameObject:
   - component: {fileID: 1581624105}
   - component: {fileID: 1581624104}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Animation Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15233,7 +15202,6 @@ Transform:
   - {fileID: 1182437589}
   - {fileID: 1970046261}
   - {fileID: 237870093}
-  - {fileID: 252380567}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1829466343
@@ -15321,7 +15289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecbeec9a27f9e6947a4aa1f5146564ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPoint: {fileID: 252380567}
+  initialPoint: {fileID: 0}
   skills:
   - {fileID: 678702529722814106, guid: 3e8434d3f44d93c4d866b688f812d8cb, type: 3}
   cooldown:
