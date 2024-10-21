@@ -1547,8 +1547,8 @@ Transform:
   m_GameObject: {fileID: 277827656}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 309.7351, y: -61.3938, z: 0}
-  m_LocalScale: {x: 1013.97266, y: 81.381226, z: 1}
+  m_LocalPosition: {x: 14.7717, y: -60.2055, z: 0}
+  m_LocalScale: {x: 424.0556, y: 83.7598, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1898,7 +1898,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 833314323}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -78971,10 +78971,12 @@ MonoBehaviour:
     name: sword
     damage: 10
     style: 1
+    bullets: {fileID: 0}
   - id: 1
     name: 
     damage: 10
     style: 0
+    bullets: {fileID: 0}
 --- !u!114 &1829466348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81229,3 +81231,4 @@ SceneRoots:
   - {fileID: 1151869751}
   - {fileID: 108913810}
   - {fileID: 319448039}
+  - {fileID: 318482996}
