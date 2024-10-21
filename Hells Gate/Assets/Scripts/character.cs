@@ -179,10 +179,6 @@ public class character : MonoBehaviour
             damage = (int)(damage * 1.5f);
         }
 
-        if(iframeActive == true){
-            damage = 0;
-        }
-
         Debug.Log("Damage taken: " + damage);
 
         currentHp -= damage;

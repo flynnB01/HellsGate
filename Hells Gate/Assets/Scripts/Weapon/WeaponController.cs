@@ -105,8 +105,4 @@ public class WeaponController : MonoBehaviour
         atkPos.SetActive(false);
         isAtk = true;
     }
-
-
-
-
 }
