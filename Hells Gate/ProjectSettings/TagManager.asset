@@ -8,6 +8,7 @@ TagManager:
   - DeathBox
   - Boss
   - Difficulty
+  - CutsceneTrigger
   layers:
   - Default
   - TransparentFX
@@ -42,6 +43,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Sky
+    uniqueID: 1646855485
+    locked: 0
+  - name: Background
+    uniqueID: 2265152057
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

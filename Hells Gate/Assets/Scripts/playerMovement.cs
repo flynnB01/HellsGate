@@ -52,6 +52,8 @@ public class playerMovement : MonoBehaviour
         float xinput = Input.GetAxis("Horizontal");
         float yinput = Input.GetAxis("Vertical");
 
+        //Debug.Log(xinput);
+
         if (!canDash)
         {
             float remainingCooldown = lastDashTime + dashCooldown - Time.time;
@@ -71,6 +73,7 @@ public class playerMovement : MonoBehaviour
 
             transform.localScale = new Vector3(xinput, 1, 1); // flip character
             body.velocity = new Vector2(xinput * moveSpeed, body.velocity.y);
+            Debug.Log(body.velocity);
         }
 
         // Dash mechanic
@@ -117,11 +120,8 @@ public class playerMovement : MonoBehaviour
             //deathMovement(); // Player stops moving when dead
             Time.timeScale = 0; //changed so player cant change directions in deathMenu and can easily respawn
         }
-    }
 
-    void FixedUpdate()
-    {
-        CheckGround();
+        CheckGround(); // check if player is touching the ground
 
         // Deceleration/drag logic
         if (grounded)
@@ -130,30 +130,24 @@ public class playerMovement : MonoBehaviour
             {
                 body.velocity = new Vector2(body.velocity.x * groundDecay, body.velocity.y);
             }
-
-            if (body.velocity.y == 0) // checks if player has fully stopped moving/ touched down on the ground
+            animator.SetBool("isJumping", false); // falling animation stops
+            if (readyToLand)
             {
-                animator.SetBool("isJumping", false); // falling animation stops
-                if (readyToLand)
-                {
-                    audio.PlaySFX(audio.sfx03); // play landing audio
-                    readyToLand = false; // prevents sound from being looped
+                Debug.Log("Landed");
+                audio.PlaySFX(audio.sfx03); // play landing audio
+                readyToLand = false; // prevents sound from being looped
 
-                }
             }
         }
         else
         {
+            readyToLand = true;
             if (Input.GetAxis("Horizontal") == 0)
             {
                 body.velocity = new Vector2(body.velocity.x * airDecay, body.velocity.y);
             }
         }
 
-        if (body.velocity.y < 0) // if player is descending
-        {
-            readyToLand = true;
-        }
 
         animator.SetFloat("x_vel", Mathf.Abs(body.velocity.x));
         animator.SetFloat("y_vel", body.velocity.y);
@@ -195,7 +189,6 @@ public class playerMovement : MonoBehaviour
     {
         body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         hasJumped = true;
-
 
         animator.SetBool("isJumping", true); // jump animation frame
         audio.PlaySFX(audio.sfx02); // play jump audio
