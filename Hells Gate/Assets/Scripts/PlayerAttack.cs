@@ -5,12 +5,19 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private BoxCollider2D box;
-    private int damage;
+    public character player;
+    private int strength;//these lines
+    private int damage;//these lines
 
     private void Start()
     {
         box = GetComponent<BoxCollider2D>();
     }
+
+    void Update(){
+        strength = player.strength;
+    }
+
     public void SetWeaponDamage(int weaponDamage)
     {
         damage = weaponDamage;
@@ -36,14 +43,15 @@ public class PlayerAttack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<enemy>().takeDmg(damage);
+            collision.gameObject.GetComponent<enemy>().takeDmg(strength);//these lines
+            collision.gameObject.GetComponent<enemy>().takeDmg(damage);//these lines
 
         }
         if (collision.gameObject.CompareTag("Boss"))
         {
             Boss boss = collision.gameObject.GetComponent<Boss>();  
-            boss.takeDmg(damage); // TODO - change dmg value to correspond with player stats
+            boss.takeDmg(strength);//these lines
+            boss.takeDmg(damage);//these lines
         }
-        
     }
 }
