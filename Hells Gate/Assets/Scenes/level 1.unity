@@ -83034,6 +83034,8 @@ MonoBehaviour:
   pm: {fileID: 1829466339}
   moveSpeed: 0
   jumpSpeed: 0
+  iframes: 1
+  iframeActive: 0
   playableDirector: {fileID: 650879234}
 --- !u!114 &1829466339
 MonoBehaviour:
@@ -83236,7 +83238,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1829466336}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2b76786b2e02dc84eabb838d65d08df9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
