@@ -7,10 +7,11 @@ using UnityEngine.TestTools;
 public class Character
 {
     public int maxHp;
-
+    
     public Character()
     {
         // Initializing the character's max HP
+        
         maxHp = 100;
     }
 
