@@ -6,7 +6,24 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.SceneManagement;
 
-public class LevelHealthTestScript
+public class Character
+{
+    public int maxHp;
+    
+    public Character()
+    {
+        // Initializing the character's max HP
+        
+        maxHp = 100;
+    }
+
+    public void incremenntHp()
+    {
+        maxHp += 10;
+    }
+}
+
+public class levelHealthTestScript
 {
     [Test]
     public void Test_NextLevelLoadScript()

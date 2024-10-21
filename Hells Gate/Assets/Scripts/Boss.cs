@@ -10,6 +10,10 @@ public class Boss : MonoBehaviour
     private new PolygonCollider2D collider;
     private Animator anim;
 
+    private float bossSize_x;
+    private float bossSize_y;
+    private float bossSize_z;
+
     public int hp = 100;
     public int exp = 75;
     public difficulty difficultyScript; // manages difficulty
@@ -24,13 +28,22 @@ public class Boss : MonoBehaviour
     private float atkTimer = 0.0f;
     private float atkTimeDelay = 0.0f;
 
+    private float flipTimer = 0.0f;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        hitbox = transform.GetChild(0).gameObject;
-        collider = hitbox.GetComponent<PolygonCollider2D>();
+        hitbox = transform.GetChild(0).gameObject; // get hitbox game object from boss' arm
+        collider = hitbox.GetComponent<PolygonCollider2D>(); // get collider from hitbox obj
 
-        anim = transform.GetChild(0).gameObject.GetComponent<Animator>();
+        anim = transform.GetChild(0).gameObject.GetComponent<Animator>(); // get animator for boss' arm
+
+        // declare boss size variables using localScale
+        bossSize_x = transform.localScale.x;
+        bossSize_y = transform.localScale.y;
+        bossSize_z = transform.localScale.z;
+
     }
 
     // Update is called once per frame
@@ -38,19 +51,28 @@ public class Boss : MonoBehaviour
     {
         float aggroDistance = 20.0f; // distance where boss will see player
 
-        // if player character is in sight of boss, will start attacking
+        // check whether the player is in front or behind
+        if((transform.position.x - player.position.x) > 0) // player in front >0, player behind <0
+        {
+            transform.localScale = new Vector3(bossSize_x * 1, bossSize_y, bossSize_z); // facing left
+        }
+        else
+        {
+            transform.localScale = new Vector3(bossSize_x * -1, bossSize_y, bossSize_z); // facing right
+        }
 
+        // if player character is in sight of boss, will start attacking
         if (isAggroed) // if player has boss aggro
         {
             if (Vector2.Distance(transform.position, player.position) > aggroDistance) // if player is out of aggro distance
             {
                 isAggroed = false;
 
-                anim.SetBool("isAggroed", false);
+                anim.SetBool("isAggroed", false); // set aggro state in animator to false
             }
             if (!isAttacking) // makes sure boss cant attack while already attacking
             {
-                timerBetweenAtk += Time.deltaTime;
+                timerBetweenAtk += Time.deltaTime; 
 
                 if (timerBetweenAtk >= 5.0f)
                 {
