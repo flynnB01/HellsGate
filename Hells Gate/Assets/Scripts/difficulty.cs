@@ -10,7 +10,7 @@ public class difficulty : MonoBehaviour
     public bool isEasy;
     public bool isNormal;
     public bool isHard;
-
+    
     public void getDropdownValue(){
         int difficultyIndex = dropdown.value;
 
