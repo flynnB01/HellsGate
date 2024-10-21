@@ -72,7 +72,7 @@ public class Boss : MonoBehaviour
             }
             if (!isAttacking) // makes sure boss cant attack while already attacking
             {
-                timerBetweenAtk += Time.deltaTime;
+                timerBetweenAtk += Time.deltaTime; 
 
                 if (timerBetweenAtk >= 5.0f)
                 {
