@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,4 +57,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("menu");
     }
+
 }
