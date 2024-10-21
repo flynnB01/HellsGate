@@ -5,11 +5,16 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private BoxCollider2D box;
+    public character player;
+    private int strength;
    
-
     private void Start()
     {
         box = GetComponent<BoxCollider2D>();
+    }
+
+    void Update(){
+        strength = player.strength;
     }
 
     //when play attack, turn attackbox on
@@ -33,14 +38,13 @@ public class PlayerAttack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<enemy>().takeDmg(10);
+            collision.gameObject.GetComponent<enemy>().takeDmg(strength);
 
         }
         if (collision.gameObject.CompareTag("Boss"))
         {
             Boss boss = collision.gameObject.GetComponent<Boss>();  
-            boss.takeDmg(10); // TODO - change dmg value to correspond with player stats
+            boss.takeDmg(strength);
         }
-        
     }
 }

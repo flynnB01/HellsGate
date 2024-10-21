@@ -141,9 +141,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4532112261662711619, guid: 8f6d3398aadb8fc49b8b1718c076e333, type: 3}
-      propertyPath: m_TagString
-      value: Difficulty
+    - target: {fileID: 3026060941335127657, guid: 8f6d3398aadb8fc49b8b1718c076e333, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4714460156053978819, guid: 8f6d3398aadb8fc49b8b1718c076e333, type: 3}
       propertyPath: m_Pivot.x
@@ -234,17 +234,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f6d3398aadb8fc49b8b1718c076e333, type: 3}
---- !u!114 &57663439 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7069118734004282760, guid: 8f6d3398aadb8fc49b8b1718c076e333, type: 3}
-  m_PrefabInstance: {fileID: 57663438}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0209bda904d07d84a8f6426faf6d05fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &60857317
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +498,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Up
       objectReference: {fileID: 0}
+    - target: {fileID: 3683167514507406781, guid: 6c914efeb78415f47a7fc970b24b8c82, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6561410838384622285, guid: 6c914efeb78415f47a7fc970b24b8c82, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -654,7 +647,7 @@ PrefabInstance:
     - target: {fileID: 1085454701956179973, guid: 41a42d69c35ce284fb1a443f0de8f13d, type: 3}
       propertyPath: difficultyScript
       value: 
-      objectReference: {fileID: 57663439}
+      objectReference: {fileID: 0}
     - target: {fileID: 4189254656273998624, guid: 41a42d69c35ce284fb1a443f0de8f13d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 87.68
@@ -791,7 +784,7 @@ PrefabInstance:
     - target: {fileID: 1951981594865563506, guid: 663f7df6bdbe25b458a44b4689022e5f, type: 3}
       propertyPath: difficultyScript
       value: 
-      objectReference: {fileID: 57663439}
+      objectReference: {fileID: 0}
     - target: {fileID: 2113949866502132646, guid: 663f7df6bdbe25b458a44b4689022e5f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -1135,6 +1128,10 @@ PrefabInstance:
       propertyPath: enemy
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4583402505866543035, guid: ec55acdaee2ac8b4caa43f126a6f0c2b, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 608277479}
     - target: {fileID: 4642563537726027208, guid: ec55acdaee2ac8b4caa43f126a6f0c2b, type: 3}
       propertyPath: initialPoint
       value: 
@@ -1222,7 +1219,7 @@ PrefabInstance:
     - target: {fileID: 8006782311716698004, guid: ec55acdaee2ac8b4caa43f126a6f0c2b, type: 3}
       propertyPath: difficultyScript
       value: 
-      objectReference: {fileID: 57663439}
+      objectReference: {fileID: 0}
     - target: {fileID: 8006782311716698004, guid: ec55acdaee2ac8b4caa43f126a6f0c2b, type: 3}
       propertyPath: playableDirector
       value: 
@@ -1237,6 +1234,17 @@ PrefabInstance:
       insertIndex: 1
       addedObject: {fileID: 1377247209}
   m_SourcePrefab: {fileID: 100100000, guid: ec55acdaee2ac8b4caa43f126a6f0c2b, type: 3}
+--- !u!114 &1026628651 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4583402505866543035, guid: ec55acdaee2ac8b4caa43f126a6f0c2b, type: 3}
+  m_PrefabInstance: {fileID: 990881051}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca6937f673b9bb4e8028de875843df4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1028246248
 GameObject:
   m_ObjectHideFlags: 0
@@ -14802,6 +14810,10 @@ PrefabInstance:
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 1459017388}
+    - target: {fileID: 69925670871922475, guid: 838f7f18797533140a8a23e58698c206, type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 1026628651}
     - target: {fileID: 634031517380178931, guid: 838f7f18797533140a8a23e58698c206, type: 3}
       propertyPath: m_Name
       value: levelupCanvas
@@ -14887,7 +14899,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7639441681534596523, guid: 838f7f18797533140a8a23e58698c206, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 838f7f18797533140a8a23e58698c206, type: 3}

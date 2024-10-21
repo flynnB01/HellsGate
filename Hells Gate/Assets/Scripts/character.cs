@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 public class character : MonoBehaviour
 {
     // initialize player lvl stats, ( can be given value in unity )
-    [SerializeField] public int currentHp, maxHp, currentExp, maxExp, currentLv, currentEn, maxEn, sceneID, skillPoints;
+    [SerializeField] public int currentHp, maxHp, currentExp, maxExp, currentLv, currentEn, maxEn, strength, luck, sceneID, skillPoints;
     public bool isDead = false; // checks if player is dead
     public float energyRegenRate = 1f;
     public bool canRegen = true;
@@ -161,10 +161,15 @@ public class character : MonoBehaviour
     public void TakeDamage(int damage) // deals damage to player, argument is how much damage is dealt
     {
         if (iframeActive)
-    {
-        Debug.Log("Damage avoided due to iframes.");
-        return; // Skip applying damage
-    }
+        {
+            Debug.Log("Damage avoided due to iframes.");
+            return; // Skip applying damage
+        }
+
+        int luckTest = Random.Range(0, 100);
+        if(luck > luckTest){
+            damage = 0;
+        }
 
         if(difficultyScript.isEasy){
             damage = (int)(damage * 0.7f);
@@ -251,6 +256,8 @@ public class character : MonoBehaviour
         maxEn = data.maxEn;
         currentExp = data.currentExp;
         maxExp = data.maxExp;
+        strength = data.strength;
+        luck = data.luck;
         currentLv = data.currentLv;
         skillPoints = data.skillPoints;
         pm.moveSpeed = data.moveSpeed;

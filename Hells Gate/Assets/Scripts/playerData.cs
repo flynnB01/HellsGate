@@ -13,6 +13,8 @@ public class playerData
     public int maxEn;
     public int currentExp;
     public int maxExp;
+    public int strength;
+    public int luck;
     public int currentLv;
     public int skillPoints;
     public float moveSpeed;
@@ -27,6 +29,8 @@ public class playerData
         maxEn = player.maxEn;
         currentExp = player.currentExp;
         maxExp = player.maxExp;
+        strength = player.strength;
+        luck = player.luck;
         currentLv = player.currentLv;
         skillPoints = player.skillPoints;
         moveSpeed = player.moveSpeed;

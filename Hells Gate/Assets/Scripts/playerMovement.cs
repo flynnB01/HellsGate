@@ -69,11 +69,11 @@ public class playerMovement : MonoBehaviour
         // Move the player horizontally
         if (Mathf.Abs(xinput) > 0 && !isDashing && canMove)
         {
-            Debug.Log("Move");
+            //Debug.Log("Move");
 
             transform.localScale = new Vector3(xinput, 1, 1); // flip character
             body.velocity = new Vector2(xinput * moveSpeed, body.velocity.y);
-            Debug.Log(body.velocity);
+            //Debug.Log(body.velocity);
         }
 
         // Dash mechanic

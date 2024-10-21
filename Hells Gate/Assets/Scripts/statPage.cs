@@ -13,7 +13,7 @@ public class statPage : MonoBehaviour
     public bool gamePaused;
     public HealthBar healthBar;
     public EnergyBar energyBar;
-
+    public PlayerAttack playerAttack;
 
 
     public GameObject currentLevel;
@@ -94,17 +94,19 @@ public class statPage : MonoBehaviour
 
         health_text.text = player.maxHp.ToString();
         energy_text.text = player.maxEn.ToString();
-
+        strength_text.text = player.strength.ToString();
         agility_text.text = (pm.moveSpeed).ToString();
-
+        luck_text.text = player.luck.ToString();
 
         newHealth_text.text = (player.maxHp + 10).ToString();
         newEnergy_text.text = (player.maxEn + 10).ToString();
-
+        newStrength_text.text = (player.strength + 1).ToString();
         newAgility_text.text = (pm.moveSpeed + 1).ToString();
+        newLuck_text.text = (player.luck + 1).ToString();
     }
 
     public void UpgradeHealth(){
+        Debug.Log("HELEHELOHELEOEHUEKEOKE");
         if(player.skillPoints > 0){
             player.maxHp += 10;
             player.skillPoints--;
@@ -122,9 +124,8 @@ public class statPage : MonoBehaviour
 
     public void UpgradeStrength(){
         if(player.skillPoints > 0){
-            
+            player.strength++;
             player.skillPoints--;
-            
         }
     }
 
@@ -138,9 +139,8 @@ public class statPage : MonoBehaviour
 
     public void UpgradeLuck(){
         if(player.skillPoints > 0){
-            
+            player.luck++;
             player.skillPoints--;
-            
         }
     }
 }
