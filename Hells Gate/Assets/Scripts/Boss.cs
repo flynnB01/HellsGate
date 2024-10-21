@@ -14,7 +14,7 @@ public class Boss : MonoBehaviour
     public int exp = 75;
     public difficulty difficultyScript; // manages difficulty
 
-    public float moveSpeed;
+    //public float moveSpeed;
 
     public bool isAttacking = false;
     private bool isAggroed = false;
@@ -42,6 +42,12 @@ public class Boss : MonoBehaviour
 
         if (isAggroed) // if player has boss aggro
         {
+            if (Vector2.Distance(transform.position, player.position) > aggroDistance) // if player is out of aggro distance
+            {
+                isAggroed = false;
+
+                anim.SetBool("isAggroed", false);
+            }
             if (!isAttacking) // makes sure boss cant attack while already attacking
             {
                 timerBetweenAtk += Time.deltaTime;
