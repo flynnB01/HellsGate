@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    // scale for flipping sprite
+    private float enemySize_x;
+    private float enemySize_y;
+    private float enemySize_z;
+
     // patrolling variables
     public Transform[] patrolPoints; // array of points which dictate where an enemy can patrol from
     public float moveSpeed;
@@ -17,7 +22,12 @@ public class EnemyMovement : MonoBehaviour
     public float aggroTimer;
     private float aggroTimerTemp;
 
-
+    private void Start()
+    {
+         enemySize_x = transform.localScale.x; // gets scale for x to flip sprite
+         enemySize_y = transform.localScale.y; // gets scale for x to flip sprite
+         enemySize_z = transform.localScale.z; // gets scale for x to flip sprite
+    }
     // Update is called once per frame
     void Update()
     {
@@ -26,12 +36,17 @@ public class EnemyMovement : MonoBehaviour
         {
             if (transform.position.x > playerTransform.position.x)
             {
-                //transform.localScale = new Vector3(1, 1, 1);
+                Debug.Log("Left");
+                transform.localScale = new Vector3(enemySize_x * 1, enemySize_y, enemySize_z); // facing left
                 transform.position += Vector3.left * moveSpeed * Time.deltaTime;
             }
             if (transform.position.x < playerTransform.position.x)
             {
-                //transform.localScale = new Vector3(-1, 1, 1);
+                Debug.Log("Right");
+
+                transform.localScale = new Vector3(enemySize_x * -1, enemySize_y, enemySize_z); // facing right
+
+
                 transform.position += Vector3.right * moveSpeed * Time.deltaTime;
             }
 
@@ -66,8 +81,17 @@ public class EnemyMovement : MonoBehaviour
             if (Vector2.Distance(transform.position, patrolPoints[patrolDest].position) < 0.2f)
             {
                 // changes direction
-                //transform.localScale = new Vector3(1, 1, 1);
                 patrolDest = patrolDest ^ 1; // swaps
+
+                if (patrolDest == 0) // going to left patrol point
+                {
+                    transform.localScale = new Vector3(enemySize_x * 1, enemySize_y, enemySize_z); // facing left
+
+                } else // going to right patrol point
+                {
+                    transform.localScale = new Vector3(enemySize_x * -1, enemySize_y, enemySize_z); // facing left
+
+                }
             }
         }
     }
