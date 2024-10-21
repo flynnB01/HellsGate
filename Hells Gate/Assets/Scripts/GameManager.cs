@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject pauseMenu;
     public GameObject statPage;
+
+    // Set this integer to the next level index from build
+    public int nextLevel;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,5 +44,16 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("menu"); // Loads main menu
+    }
+
+    public void LoadNextLevel()
+    {
+        Debug.Log("Loaded next level");
+        SceneManager.LoadScene(nextLevel);
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("menu");
     }
 }

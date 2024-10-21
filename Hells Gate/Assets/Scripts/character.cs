@@ -24,6 +24,8 @@ public class character : MonoBehaviour
     public playerMovement pm;
     public float moveSpeed;
     public float jumpSpeed;
+    public float iframes = 1.0f;
+    public bool iframeActive = false;
     [SerializeField] private PlayableDirector playableDirector;
 
     void Start()
@@ -72,9 +74,8 @@ public class character : MonoBehaviour
         }
     }
 
-    private void LevelUp()
+    public void LevelUp()
     {
-        // TODO - level up other stats (STR, DEF etc)
         currentLv += 1; // lvl up
         skillPoints += 3;
 
@@ -91,6 +92,21 @@ public class character : MonoBehaviour
         healthBar.IncreaseMaxHealth(maxHp);
         energyBar.IncreaseMaxEnergy(maxEn);
         playableDirector.Play(); // Plays cutscene
+    }
+    public void levelUp()
+    {//for unit test, ignore
+        currentLv += 1; // lvl up
+        skillPoints += 3;
+
+        //maxHp += 20; // increases characters maximum health points
+        currentHp = maxHp; // regains hp after levelling up
+
+        //maxEn += 50; // increase character energy points
+        currentEn = maxEn; // regain energy after level up
+
+        currentExp = 0; // resets current exp
+
+        maxExp += 100; // sets new exp milestone
     }
 
     void Update()
@@ -144,12 +160,22 @@ public class character : MonoBehaviour
     }
     public void TakeDamage(int damage) // deals damage to player, argument is how much damage is dealt
     {
+        if (iframeActive)
+    {
+        Debug.Log("Damage avoided due to iframes.");
+        return; // Skip applying damage
+    }
+
         if(difficultyScript.isEasy){
             damage = (int)(damage * 0.7f);
         }
         
         if(difficultyScript.isHard){
             damage = (int)(damage * 1.5f);
+        }
+
+        if(iframeActive == true){
+            damage = 0;
         }
 
         Debug.Log("Damage taken: " + damage);
@@ -167,6 +193,14 @@ public class character : MonoBehaviour
         {
             isDead = false;
         }
+
+        StartCoroutine(SetIframes());
+    }
+
+    IEnumerator SetIframes(){
+        iframeActive = true;
+        yield return new WaitForSeconds(iframes);
+        iframeActive = false;
     }
 
     public void ReceiveHealth(int healAmount) // For healing scripts

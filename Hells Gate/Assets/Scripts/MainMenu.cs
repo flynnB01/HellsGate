@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Game Start");
         //game starts and case '3' is activated
         loadSavedGame = 3;
-        SceneManager.LoadScene("tutorial area");
+        SceneManager.LoadScene(1);
         Time.timeScale = 1;
     }
 
