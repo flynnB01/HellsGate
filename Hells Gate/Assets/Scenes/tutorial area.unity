@@ -17633,13 +17633,6 @@ MonoBehaviour:
 --- !u!222 &2125122624
 CanvasRenderer:
   m_ObjectHideFlags: 0
-<<<<<<< Updated upstream
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125122621}
-  m_CullTransparentMesh: 1
-=======
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
@@ -18017,7 +18010,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 663f7df6bdbe25b458a44b4689022e5f, type: 3}
->>>>>>> Stashed changes
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

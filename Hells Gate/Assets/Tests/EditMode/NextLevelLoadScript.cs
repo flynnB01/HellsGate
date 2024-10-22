@@ -18,7 +18,7 @@ public class NextLevelLoadScript
         int buildIndex = 1; 
         Debug.Log("Scene Chosen");
         
-        // Ensure that the scene is properly loaded
+        // Load the scene for testing
         EditorSceneManager.OpenScene(EditorBuildSettings.scenes[buildIndex].path, OpenSceneMode.Single);
         Debug.Log("Opened Scene");
         
@@ -34,10 +34,10 @@ public class NextLevelLoadScript
     [UnityTest]
     public IEnumerator Test_NextLevelLoadScript()
     {
-        SceneManager.LoadScene(1); // Directly load the scene for testing
-    yield return null; // Wait a frame to allow the scene to load
-    Scene currentScene = SceneManager.GetActiveScene();
-    Assert.AreEqual(1, currentScene.buildIndex); // Check if scene loaded correctly
+        // Since we already opened the scene in Setup, we just need to check the active scene
+        yield return null; // Wait a frame to ensure everything is set up
+        Scene currentScene = SceneManager.GetActiveScene();
+        Assert.AreEqual(1, currentScene.buildIndex); // Check if scene loaded correctly
     }
 
     [TearDown]

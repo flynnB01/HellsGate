@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class Boss : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class Boss : MonoBehaviour
     private float atkTimeDelay = 0.0f;
 
     private float flipTimer = 0.0f;
+
+    [SerializeField] private PlayableDirector playableDirector;
 
 
     // Start is called before the first frame update
@@ -167,7 +170,9 @@ public class Boss : MonoBehaviour
         {
             expManager.Instance.AddExp(exp);
         }
+        playableDirector.Play();
         Destroy(gameObject);
         Debug.Log("Boss Defeated");
+        
     }
 }
