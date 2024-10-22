@@ -1,54 +1,83 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.Windows;
 
 public class EnemyMovement : MonoBehaviour
 {
+    private Rigidbody2D rb; // this obj's rigidbody
+
     // scale for flipping sprite
     private float enemySize_x;
     private float enemySize_y;
     private float enemySize_z;
 
     // patrolling variables
-    public Transform[] patrolPoints; // array of points which dictate where an enemy can patrol from
     public float moveSpeed;
-    public int patrolDest;
+    private float patrolDest;
 
     // chasing variables
     public Transform playerTransform;
-    public bool isChasing;
+    private bool isChasing;
     public float detectDistance;
 
+    private BoxCollider2D wallCheck; // checks for wall to try jump
+    private BoxCollider2D groundCheck; // checks for wall to try jump
+    public LayerMask wallMask; //layer mask, set to "ground"
+
+    //  times how long enemy is aggroed toward player
     public float aggroTimer;
     private float aggroTimerTemp;
 
+
+    public float patrolTimer = 5.0f; // timer which counts down when enemy will flip and turn around
+
     private void Start()
     {
-         enemySize_x = transform.localScale.x; // gets scale for x to flip sprite
-         enemySize_y = transform.localScale.y; // gets scale for x to flip sprite
-         enemySize_z = transform.localScale.z; // gets scale for x to flip sprite
+        enemySize_x = transform.localScale.x; // gets scale for x to flip sprite
+        enemySize_y = transform.localScale.y; // gets scale for x to flip sprite
+        enemySize_z = transform.localScale.z; // gets scale for x to flip sprite
+
+        patrolDest = 1.0f; // enemy going left
+
+        wallCheck = transform.GetChild(0).GetComponent<BoxCollider2D>(); // get collider from wall check child
+        groundCheck = transform.GetChild(1).GetComponent<BoxCollider2D>(); // get collider from ground check child
+
+        rb = GetComponent<Rigidbody2D>(); // get this object's rigidbody to allow jumping
     }
     // Update is called once per frame
     void Update()
     {
+        // enemy can jump anytime
+        if (Physics2D.OverlapAreaAll(wallCheck.bounds.min, wallCheck.bounds.max, wallMask).Length > 0) // if wall check detects a wall
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 20);
+
+        }
+
         // when enemy is chasing player
         if (isChasing)
         {
             if (transform.position.x > playerTransform.position.x)
             {
-                Debug.Log("Left");
+                //Debug.Log("Left");
                 transform.localScale = new Vector3(enemySize_x * 1, enemySize_y, enemySize_z); // facing left
-                transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+                rb.velocity = new Vector2(moveSpeed * -1, rb.velocity.y);
             }
             if (transform.position.x < playerTransform.position.x)
             {
-                Debug.Log("Right");
+                //Debug.Log("Right");
 
                 transform.localScale = new Vector3(enemySize_x * -1, enemySize_y, enemySize_z); // facing right
 
 
-                transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+                rb.velocity = new Vector2(moveSpeed * 1, rb.velocity.y);
             }
+
+
+
 
             aggroTimer -= 1.0f * Time.deltaTime;
             if (aggroTimer < 0.0f)
@@ -63,8 +92,18 @@ public class EnemyMovement : MonoBehaviour
         }
         else // enemy is patrolling
         {
+            // if ground check detects a cliff (absence of ground)
+            if (!(Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, wallMask).Length > 0))
+            {
+                // turn around enemy to avoid falling off cliff
+                patrolDest *= -1;
+                patrolTimer = 5.0f;
+
+            }
             // keeps original aggro timer value for when the value needs to be reset
             aggroTimerTemp = aggroTimer;
+
+            patrolTimer -= Time.deltaTime; // decrement patrol timer
 
             // if player character is in sight of enemy, will start chasing player
             if (Vector2.Distance(transform.position, playerTransform.position) < detectDistance)
@@ -74,25 +113,19 @@ public class EnemyMovement : MonoBehaviour
                 moveSpeed = moveSpeed * 4.0f;
             }
 
-            // makes enemy move from its current position to the destination position
-            transform.position = Vector2.MoveTowards(transform.position, patrolPoints[patrolDest].position, moveSpeed * Time.deltaTime);
-
-            // if enemy gets close to patrol point, send back to other patrol point dest
-            if (Vector2.Distance(transform.position, patrolPoints[patrolDest].position) < 0.2f)
+            if (patrolTimer <= 0)
             {
-                // changes direction
-                patrolDest = patrolDest ^ 1; // swaps
+                patrolDest *= -1.0f; // swaps direction once timer is 0
+                patrolTimer = 5.0f; // resets timer
 
-                if (patrolDest == 0) // going to left patrol point
-                {
-                    transform.localScale = new Vector3(enemySize_x * 1, enemySize_y, enemySize_z); // facing left
-
-                } else // going to right patrol point
-                {
-                    transform.localScale = new Vector3(enemySize_x * -1, enemySize_y, enemySize_z); // facing left
-
-                }
             }
+
+            // patrolling
+            transform.localScale = new Vector3(enemySize_x * -patrolDest, enemySize_y, enemySize_z); // facing left
+            rb.velocity = new Vector2(moveSpeed * patrolDest, rb.velocity.y);
+
+            Debug.Log(enemySize_x * patrolDest);
+            Debug.Log(patrolDest);
         }
     }
 }

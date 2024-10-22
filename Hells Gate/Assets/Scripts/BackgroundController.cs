@@ -25,7 +25,6 @@ public class BackgroundController : MonoBehaviour
         float distance_y = camera.transform.position.y * parallax;
         float movement = camera.transform.position.x * (1 - parallax);
 
-
         transform.position = new Vector3(startPos_x + distance_x, startPos_y + distance_y, transform.position.z);
 
         if (movement > startPos_x + length) // if bg has moved to the end of its own length, change position to give illusion of infinite scrolling

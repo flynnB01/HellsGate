@@ -7,7 +7,7 @@ public class enemy : MonoBehaviour
     // init enemy stats
     public int expValue;
     public int hp=10;
-    public HealthBar enemyHpBar;
+    //public HealthBar enemyHpBar;
     public difficulty difficultyScript;//manages difficulty
 
     void Death() // when enemy dies
@@ -33,7 +33,7 @@ public class enemy : MonoBehaviour
         if (hp <= 0) {
             Death();
         }
-        enemyHpBar.SetHealth(hp);
+        //enemyHpBar.SetHealth(hp);
     }
 
     
