@@ -2,6 +2,12 @@
 
 Hell's Gate is a 2D platform Unity game where you face off against morbid enemies spawned by the Hell's Gate. Make your way through a now-tainted land infested by dark creatures by your own hands.
 
+# Developer's
+- Raphael Dakanay
+- Flynn Butcher
+- Jason Yuan
+- Kyle Baltazar
+
 # How to build Hell's Gate.
 
 1. Download the release version of Hell's Gate.
@@ -20,3 +26,6 @@ Hell's Gate is a 2D platform Unity game where you face off against morbid enemie
 # Packages
 
 Cinemachine was used in this Unity Project, which provided extra tools for the camera work and cutscenes for the project.
+
+# Sound Credits
+We used jumping and landing sound effects pack from the Unity Asset Store called 'RPG Essentials Sound Effects' created by leohpaz
