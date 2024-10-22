@@ -2367,7 +2367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropdown: {fileID: 3702477525073806764}
   isEasy: 0
-  isNormal: 0
+  isNormal: 1
   isHard: 0
 --- !u!1 &4649298316556572947
 GameObject:

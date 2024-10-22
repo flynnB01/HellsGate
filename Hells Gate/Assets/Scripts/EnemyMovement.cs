@@ -23,9 +23,11 @@ public class EnemyMovement : MonoBehaviour
     private bool isChasing;
     public float detectDistance;
 
+    // movement and jump conditions
     private BoxCollider2D wallCheck; // checks for wall to try jump
     private BoxCollider2D groundCheck; // checks for wall to try jump
     public LayerMask wallMask; //layer mask, set to "ground"
+    private bool canJump = true;
 
     //  times how long enemy is aggroed toward player
     public float aggroTimer;
@@ -51,10 +53,15 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         // enemy can jump anytime
-        if (Physics2D.OverlapAreaAll(wallCheck.bounds.min, wallCheck.bounds.max, wallMask).Length > 0) // if wall check detects a wall
+        if (Physics2D.OverlapAreaAll(wallCheck.bounds.min, wallCheck.bounds.max, wallMask).Length > 0 && canJump == true) // if wall check detects a wall and that enemy is not already jumping
         {
-            rb.velocity = new Vector2(rb.velocity.x, 20);
+            canJump = false;
+            rb.velocity = new Vector2(rb.velocity.x, 10);
+        }
 
+        if (rb.velocity.y == 0) // enemy can only jump again once it has hit the ground (velocity y = 0)
+        {
+            canJump = true;
         }
 
         // when enemy is chasing player
@@ -79,7 +86,7 @@ public class EnemyMovement : MonoBehaviour
 
 
 
-            aggroTimer -= 1.0f * Time.deltaTime;
+            aggroTimer -= Time.deltaTime;
             if (aggroTimer < 0.0f)
             {
                 Debug.Log("lost interest");
@@ -124,8 +131,8 @@ public class EnemyMovement : MonoBehaviour
             transform.localScale = new Vector3(enemySize_x * -patrolDest, enemySize_y, enemySize_z); // facing left
             rb.velocity = new Vector2(moveSpeed * patrolDest, rb.velocity.y);
 
-            Debug.Log(enemySize_x * patrolDest);
-            Debug.Log(patrolDest);
+            //Debug.Log(enemySize_x * patrolDest);
+            //Debug.Log(patrolDest);
         }
     }
 }

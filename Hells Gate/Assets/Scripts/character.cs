@@ -24,33 +24,26 @@ public class character : MonoBehaviour
     public playerMovement pm;
     public float moveSpeed;
     public float jumpSpeed;
-    public float iframes = 1.0f;
+    public float iframes = 0.7f;
     public bool iframeActive = false;
     [SerializeField] private PlayableDirector playableDirector;
 
     void Start()
     {
+        playerData data = SaveSystem.LoadPlayer();
         //case '2' is active so game loads with saved data
         if (MainMenu.loadSavedGame == 2)
         {
-            playerData data = SaveSystem.LoadPlayer();
-
-            if (data != null)
-            {
-                LoadPlayer();
-
-                Debug.LogError("Game loaded successfully.");
-            }
-            else
-            {
-                Debug.LogError("No save file found.");
-            }
+            LoadPlayer();
+            MainMenu.loadSavedGame = 1;
         }
         //case '3' is active so game loads and scene is immediatly reset
         else if (MainMenu.loadSavedGame == 3)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             MainMenu.loadSavedGame = 1;
+        } else {
+            LoadNextLevel();
         }
     }
 
@@ -69,7 +62,6 @@ public class character : MonoBehaviour
         currentExp += newExp;
         if (currentExp >= maxExp) // once current exp reaches level milestone
         {
-
             LevelUp();
         }
     }
@@ -118,7 +110,6 @@ public class character : MonoBehaviour
         moveSpeed = pm.moveSpeed;
         jumpSpeed = pm.jumpSpeed;
 
-
         sceneID = SceneManager.GetActiveScene().buildIndex;
         expBar.SetExp(currentExp);
         /*
@@ -141,7 +132,7 @@ public class character : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            HandleExpChange(100); // Temporary
+            HandleExpChange(200); // Temporary
             Debug.Log("Gained XP"); // Temporary
 
         }
@@ -178,6 +169,13 @@ public class character : MonoBehaviour
         if(difficultyScript.isHard){
             damage = (int)(damage * 1.5f);
         }
+
+        switch (sceneID) // increases player damage taken depending on scene
+        {
+            case 2: damage = (int)((float)damage * 1.5f); break;
+            case 3: damage = (int)((float)damage * 2.0f); break;
+        }
+
 
         Debug.Log("Damage taken: " + damage);
 
@@ -264,6 +262,24 @@ public class character : MonoBehaviour
         position.y = data.position[1];
         position.z = data.position[2];
         transform.position = position;
+    }
+
+    public void LoadNextLevel(){
+        //loads player data
+        playerData data = SaveSystem.LoadPlayer();
+
+        currentHp = data.currentHp;
+        maxHp = data.maxHp;
+        currentEn = data.currentEn;
+        maxEn = data.maxEn;
+        currentExp = data.currentExp;
+        maxExp = data.maxExp;
+        strength = data.strength;
+        luck = data.luck;
+        currentLv = data.currentLv;
+        skillPoints = data.skillPoints;
+        pm.moveSpeed = data.moveSpeed;
+        pm.jumpSpeed = data.jumpSpeed;
     }
 
     //called if player chooses to reload from last save after dying
