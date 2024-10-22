@@ -6,7 +6,7 @@ public class Weapon
 {
     public int id;
     public string name;
-    public int damage;
+    public float damage;
     public int style;
     public GameObject bullets;
 }
@@ -28,17 +28,18 @@ public class WeaponController : MonoBehaviour
         InitWeapon();
     }
 
-    public void InitWeapon()
+    public void InitWeapon()//initweapon set to sword
     {
         nowWeapon = weapons[0];
         atkPos.GetComponent<PlayerAttack>().SetWeaponDamage(weapons[0].damage);
         ani.SetFloat("weapon 0", 0);
     }
 
-    public void ChageWeapon(int id) 
+    public void ChageWeapon(int id) //weapon change's function
     {
         nowWeapon = weapons[id - 1];
-        ani.SetFloat("weapon 0", id);
+        ani.SetInteger("weapon", nowWeapon.id);
+        Debug.Log(nowWeapon.id);
         atkPos.GetComponent<PlayerAttack>().SetWeaponDamage(weapons[id-1].damage);
        //weapon change
     }
@@ -60,19 +61,24 @@ public class WeaponController : MonoBehaviour
             }
            
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha4))//change weapon to sword
+        {
+            ChageWeapon(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))//hammer
         {
             ChageWeapon(2);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3))//gun
         {
             ChageWeapon(3);
         }
     }
-    public void rangerAttack()
+    public void rangerAttack()//gun attack
         {
-        isAtk = false; 
+        isAtk = false;
         GameObject bullet = GameObject.Instantiate(nowWeapon.bullets);
+        bullet.GetComponent<BulletCollsion>().SetWeaponDamage(transform.GetComponent<character>().strength,nowWeapon.damage);
         bullet.transform.position = atkPos.transform.position;
         bullet.transform.localScale = transform.localScale;
         StartCoroutine(WaitShoot());

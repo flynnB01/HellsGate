@@ -12,17 +12,6 @@ public class GameManager : MonoBehaviour
 
     // Set this integer to the next level index from build
     public int nextLevel;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void gameOver()
     {

@@ -56,7 +56,7 @@ public class EnemyMovement : MonoBehaviour
         if (Physics2D.OverlapAreaAll(wallCheck.bounds.min, wallCheck.bounds.max, wallMask).Length > 0 && canJump == true) // if wall check detects a wall and that enemy is not already jumping
         {
             canJump = false;
-            rb.velocity = new Vector2(rb.velocity.x, 10);
+            rb.velocity = new Vector2(rb.velocity.x, 20);
         }
 
         if (rb.velocity.y == 0) // enemy can only jump again once it has hit the ground (velocity y = 0)
