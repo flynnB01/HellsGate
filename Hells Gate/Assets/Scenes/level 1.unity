@@ -930,7 +930,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expValue: 25
   hp: 50
-  enemyHpBar: {fileID: 0}
   difficultyScript: {fileID: 203203273}
 --- !u!114 &208094026
 MonoBehaviour:
@@ -958,15 +957,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6924030a0f927364982b09164ce89451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolPoints:
-  - {fileID: 2136416713}
-  - {fileID: 794619847}
   moveSpeed: 2
-  patrolDest: 0
   playerTransform: {fileID: 1829466342}
-  isChasing: 0
   detectDistance: 5
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 0
   aggroTimer: 10
+  patrolTimer: 5
 --- !u!50 &208094028
 Rigidbody2D:
   serializedVersion: 4
@@ -3558,15 +3556,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6924030a0f927364982b09164ce89451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolPoints:
-  - {fileID: 866233147}
-  - {fileID: 1812864933}
   moveSpeed: 2
-  patrolDest: 0
   playerTransform: {fileID: 1829466342}
-  isChasing: 0
   detectDistance: 5
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 0
   aggroTimer: 10
+  patrolTimer: 5
 --- !u!50 &478599888
 Rigidbody2D:
   serializedVersion: 4
@@ -3669,7 +3666,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expValue: 25
   hp: 50
-  enemyHpBar: {fileID: 0}
   difficultyScript: {fileID: 203203273}
 --- !u!114 &478599892
 MonoBehaviour:
@@ -5679,7 +5675,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.87
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -77563,7 +77559,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expValue: 25
   hp: 50
-  enemyHpBar: {fileID: 0}
   difficultyScript: {fileID: 203203273}
 --- !u!114 &1499452879
 MonoBehaviour:
@@ -77591,15 +77586,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6924030a0f927364982b09164ce89451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolPoints:
-  - {fileID: 2136416713}
-  - {fileID: 794619847}
   moveSpeed: 2
-  patrolDest: 0
   playerTransform: {fileID: 1829466342}
-  isChasing: 0
   detectDistance: 5
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 0
   aggroTimer: 10
+  patrolTimer: 5
 --- !u!50 &1499452881
 Rigidbody2D:
   serializedVersion: 4
@@ -80093,8 +80087,8 @@ MonoBehaviour:
   gameManager: {fileID: 1384576933}
   difficultyScript: {fileID: 203203273}
   pm: {fileID: 1829466339}
-  moveSpeed: 0
-  jumpSpeed: 0
+  moveSpeed: 15
+  jumpSpeed: 20
   iframes: 1
   iframeActive: 0
   playableDirector: {fileID: 650879234}
@@ -81392,7 +81386,7 @@ Transform:
   m_GameObject: {fileID: 1972284754}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 519.57275, y: -1.5940723, z: -10.5580635}
+  m_LocalPosition: {x: 2.4227505, y: -16.974072, z: -10.5580635}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
