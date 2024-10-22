@@ -26,27 +26,29 @@ public class character : MonoBehaviour
     public float jumpSpeed;
     public float iframes = 0.7f;
     public bool iframeActive = false;
+    private bool loadedGame = false;
     [SerializeField] private PlayableDirector playableDirector;
 
     void Start()
     {
+        sceneID = SceneManager.GetActiveScene().buildIndex;
         playerData data = SaveSystem.LoadPlayer();
 
         Debug.Log(gameManager.levelChange);
 
-        //case '2' is active so game loads with saved data
-        if (MainMenu.newGame)
+        //game loads with saved data
+        if (MainMenu.loadGame)
         {
-            Debug.Log("NEW GAME LOADED HAPPENED");
+            Debug.Log("LOAD GAME LOADED HAPPENED");
             LoadPlayer();
             MainMenu.newGame = false;
             return;
         }
-        //case '3' is active so game loads and scene is immediatly reset
-        else if (MainMenu.loadGame)
+        //game loads and scene is immediatly reset
+        else if (MainMenu.newGame)
         {
-            Debug.Log("LOAD GAME LOADED HAPPENED");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Debug.Log("NEW GAME LOADED HAPPENED");
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             MainMenu.loadGame = false;
             return;
         }
@@ -116,6 +118,8 @@ public class character : MonoBehaviour
 
     void Update()
     {
+        sceneID = SceneManager.GetActiveScene().buildIndex;
+
         //Debug.Log(gameManager.levelChange);
         //health bar level is checked on update instead of in take damage to can be set to proper level after loading game
         healthBar.SetHealth(currentHp);
@@ -124,7 +128,6 @@ public class character : MonoBehaviour
         moveSpeed = pm.moveSpeed;
         jumpSpeed = pm.jumpSpeed;
 
-        sceneID = SceneManager.GetActiveScene().buildIndex;
         expBar.SetExp(currentExp);
         /*
         if (Input.GetKeyDown(KeyCode.Space))
@@ -132,6 +135,11 @@ public class character : MonoBehaviour
             TakeDamage(20);
         }
         */
+
+        if(loadedGame == false && (sceneID == 2 || sceneID == 3)){
+            loadedGame = true;
+            LoadNextLevel();
+        }
 
         if (Input.GetKeyDown(KeyCode.H) && currentEn >= 20)
         {
