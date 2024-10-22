@@ -131,8 +131,8 @@ public class EnemyMovement : MonoBehaviour
             transform.localScale = new Vector3(enemySize_x * -patrolDest, enemySize_y, enemySize_z); // facing left
             rb.velocity = new Vector2(moveSpeed * patrolDest, rb.velocity.y);
 
-            Debug.Log(enemySize_x * patrolDest);
-            Debug.Log(patrolDest);
+            //Debug.Log(enemySize_x * patrolDest);
+            //Debug.Log(patrolDest);
         }
     }
 }
