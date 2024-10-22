@@ -20,15 +20,10 @@ public class enemy : MonoBehaviour
     }
    public void takeDmg(int damage)// enemy lose hp 
     {
-<<<<<<< HEAD
-        Debug.Log(damage);
-        if(difficultyScript.isEasy){
-=======
         float sceneID = SceneManager.GetActiveScene().buildIndex; // get current scene id;
 
         // change amount of damage taken depending on difficulty
         if (difficultyScript.isEasy){
->>>>>>> 197a83e482ca999c7c465bdd6705d6cdaee3d575
             damage = (int)(damage * 1.3f);
         }
         
