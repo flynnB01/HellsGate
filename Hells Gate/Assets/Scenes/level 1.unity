@@ -3017,6 +3017,8 @@ PlayableDirector:
     value: {fileID: 1092725181}
   - key: {fileID: -1162416346938011884, guid: 7591b4930313cfa4e8e426bfce7f9b05, type: 2}
     value: {fileID: 1829466344}
+  - key: {fileID: -4248341571416403277, guid: 7591b4930313cfa4e8e426bfce7f9b05, type: 2}
+    value: {fileID: 1092725179}
   m_ExposedReferences:
     m_References:
     - bb59db857641c2c42b04e70876e149e9: {fileID: 936360766}
@@ -4409,6 +4411,8 @@ PlayableDirector:
     value: {fileID: 1092725181}
   - key: {fileID: 6967083193785221946, guid: 75866fb905217e14b8b23f372af56f28, type: 2}
     value: {fileID: 855525680}
+  - key: {fileID: 2965174023551251186, guid: 75866fb905217e14b8b23f372af56f28, type: 2}
+    value: {fileID: 1092725179}
   m_ExposedReferences:
     m_References:
     - ba289f83f129a2b4689e02a29c041cb0: {fileID: 1972284756}
@@ -5675,7 +5679,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 5.87
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -78352,7 +78356,7 @@ GameObject:
   - component: {fileID: 1581624105}
   - component: {fileID: 1581624104}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Map + BlackBox Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81388,7 +81392,7 @@ Transform:
   m_GameObject: {fileID: 1972284754}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.4227505, y: -16.974072, z: -10.5580635}
+  m_LocalPosition: {x: 519.57275, y: -1.5940723, z: -10.5580635}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
