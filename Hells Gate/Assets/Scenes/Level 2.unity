@@ -2597,7 +2597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1085454701956179973, guid: 41a42d69c35ce284fb1a443f0de8f13d, type: 3}
       propertyPath: hp
-      value: 400
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1085454701956179973, guid: 41a42d69c35ce284fb1a443f0de8f13d, type: 3}
       propertyPath: player
@@ -2606,7 +2606,7 @@ PrefabInstance:
     - target: {fileID: 1085454701956179973, guid: 41a42d69c35ce284fb1a443f0de8f13d, type: 3}
       propertyPath: difficultyScript
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1954937413}
     - target: {fileID: 4189254656273998624, guid: 41a42d69c35ce284fb1a443f0de8f13d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 87.68
@@ -4218,7 +4218,7 @@ PrefabInstance:
     - target: {fileID: 8006782311716698004, guid: ec55acdaee2ac8b4caa43f126a6f0c2b, type: 3}
       propertyPath: difficultyScript
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1954937413}
     - target: {fileID: 8006782311716698004, guid: ec55acdaee2ac8b4caa43f126a6f0c2b, type: 3}
       propertyPath: playableDirector
       value: 
@@ -115428,8 +115428,36 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5040477182301115980, guid: 8f06363f17217d3498454dc1fb5a18a1, type: 3}
       propertyPath: m_Name
-      value: levelupCanvas
+      value: LevelUpCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5089456479410722880, guid: 8f06363f17217d3498454dc1fb5a18a1, type: 3}
+      propertyPath: pm
+      value: 
+      objectReference: {fileID: 990881052}
+    - target: {fileID: 5089456479410722880, guid: 8f06363f17217d3498454dc1fb5a18a1, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 608277479}
+    - target: {fileID: 5089456479410722880, guid: 8f06363f17217d3498454dc1fb5a18a1, type: 3}
+      propertyPath: energyBar
+      value: 
+      objectReference: {fileID: 162514843}
+    - target: {fileID: 5089456479410722880, guid: 8f06363f17217d3498454dc1fb5a18a1, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 5957842}
+    - target: {fileID: 5089456479410722880, guid: 8f06363f17217d3498454dc1fb5a18a1, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1731113676}
+    - target: {fileID: 5089456479410722880, guid: 8f06363f17217d3498454dc1fb5a18a1, type: 3}
+      propertyPath: pauseMenuUI
+      value: 
+      objectReference: {fileID: 2141324446}
+    - target: {fileID: 5089456479410722880, guid: 8f06363f17217d3498454dc1fb5a18a1, type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 2124617005}
     - target: {fileID: 6490578319587236975, guid: 8f06363f17217d3498454dc1fb5a18a1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -144607,7 +144635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f82bc7e3be82e98459ea11b322d720fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 0}
+  playableDirector: {fileID: 255961418}
 --- !u!50 &1530980408
 Rigidbody2D:
   serializedVersion: 4
@@ -146544,6 +146572,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2124617005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4583402505866543035, guid: ec55acdaee2ac8b4caa43f126a6f0c2b, type: 3}
+  m_PrefabInstance: {fileID: 990881051}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca6937f673b9bb4e8028de875843df4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2141324446 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3026060941335127657, guid: 8f6d3398aadb8fc49b8b1718c076e333, type: 3}

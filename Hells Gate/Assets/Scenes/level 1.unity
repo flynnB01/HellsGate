@@ -82471,7 +82471,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5040477182301115980, guid: 8f06363f17217d3498454dc1fb5a18a1, type: 3}
       propertyPath: m_Name
-      value: levelupCanvas
+      value: LevelupCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 5089456479410722880, guid: 8f06363f17217d3498454dc1fb5a18a1, type: 3}
       propertyPath: pm

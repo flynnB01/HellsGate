@@ -159,18 +159,24 @@ public class Boss : MonoBehaviour
 
         if (hp <= 0)
         {
-            Death();
+            {
+            StartCoroutine(Death()); // Start the coroutine
+        }
         }
     }
 
-    private void Death()
+    private IEnumerator Death()
     {
        
        if(expManager.Instance)
         {
             expManager.Instance.AddExp(exp);
         }
+        if (playableDirector != null)
+        {
         playableDirector.Play();
+        yield return new WaitForSeconds((float)playableDirector.duration); // Waits for cutscene before dying
+        }
         Destroy(gameObject);
         Debug.Log("Boss Defeated");
         
