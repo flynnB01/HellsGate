@@ -6,7 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     private BoxCollider2D box;
     public character player;
-    private int strength;
+    private float strength;
 
     private void Start()
     {
@@ -17,9 +17,10 @@ public class PlayerAttack : MonoBehaviour
         strength = player.strength;
     }
 
-    public void SetWeaponDamage(int weaponDamage)
+    public void SetWeaponDamage(float weaponDamage)
     {
-        //strength *= weaponDamage; // ENABLE THIS ONCE ADDED A WEAPON_____________________________________________________________________
+
+        strength *= weaponDamage; // ENABLE THIS ONCE ADDED A WEAPON_____________________________________________________________________
     }
     //when play attack, turn attackbox on
     /*public void AtkStar()
@@ -42,13 +43,13 @@ public class PlayerAttack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<enemy>().takeDmg(strength);
+            collision.gameObject.GetComponent<enemy>().takeDmg((int)strength);
 
         }
         if (collision.gameObject.CompareTag("Boss"))
         {
             Boss boss = collision.gameObject.GetComponent<Boss>();  
-            boss.takeDmg(strength);
+            boss.takeDmg((int)strength);
         }
     }
 }
