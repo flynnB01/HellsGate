@@ -179,6 +179,13 @@ public class character : MonoBehaviour
             damage = (int)(damage * 1.5f);
         }
 
+        switch (sceneID) // increases player damage taken depending on scene
+        {
+            case 2: damage = (int)((float)damage * 1.5f); break;
+            case 3: damage = (int)((float)damage * 2.0f); break;
+        }
+
+
         Debug.Log("Damage taken: " + damage);
 
         currentHp -= damage;

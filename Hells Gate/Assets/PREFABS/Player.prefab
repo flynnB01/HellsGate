@@ -228,7 +228,7 @@ MonoBehaviour:
   currentLv: 1
   currentEn: 100
   maxEn: 100
-  strength: 0
+  strength: 25
   luck: 0
   sceneID: 0
   skillPoints: 0
