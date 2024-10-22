@@ -14,7 +14,6 @@ public class NextLevelLoadScript
     [SetUp]
     public void Setup()
     {
-        // Replace with the actual build index of your scene
         int buildIndex = 1; 
         Debug.Log("Scene Chosen");
         
