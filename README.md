@@ -15,6 +15,3 @@ Hell's Gate is a 2D platform Unity game where you face off against morbid enemie
 5. Click on Build (NOT BUILD AND RUN) and select the Builds folder.
 
 6. Once finished building, click on 'HELLS_GATEv0.1' to launch the game.
-
-
-# Authors
