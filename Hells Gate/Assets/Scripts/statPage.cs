@@ -106,7 +106,6 @@ public class statPage : MonoBehaviour
     }
 
     public void UpgradeHealth(){
-        Debug.Log("HELEHELOHELEOEHUEKEOKE");
         if(player.skillPoints > 0){
             player.maxHp += 10;
             player.skillPoints--;

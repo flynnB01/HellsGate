@@ -7,12 +7,15 @@ public class MainMenu : MonoBehaviour
 {
     //base case of '1'
     public static int loadSavedGame = 1;
+    public static bool newGame;
+    public static bool loadGame;
 
     public void PlayGame()
     {
         Debug.Log("Game Start");
         //game starts and case '3' is activated
-        loadSavedGame = 3;
+        //loadSavedGame = 3;
+        newGame = true;
         SceneManager.LoadScene(1);
         Time.timeScale = 1;
     }
@@ -25,13 +28,12 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        //game starts and case '2' is loaded 
+        Debug.Log("Game Loaded");
+        loadGame = true;
+
         playerData data = SaveSystem.LoadPlayer();
 
         SceneManager.LoadScene(data.sceneID);
-
-        Debug.Log("Game Loaded");
-        loadSavedGame = 2;
     }
 
     public void LoadTest()

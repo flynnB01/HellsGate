@@ -9,9 +9,23 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject pauseMenu;
     public GameObject statPage;
+    public character player;
+    public bool levelChange;
 
     // Set this integer to the next level index from build
     public int nextLevel;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public void gameOver()
     {
@@ -39,6 +53,7 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         Debug.Log("Loaded next level");
+        levelChange = true;
         SceneManager.LoadScene(nextLevel);
     }
 

@@ -31,20 +31,33 @@ public class character : MonoBehaviour
     void Start()
     {
         playerData data = SaveSystem.LoadPlayer();
+
+        Debug.Log(gameManager.levelChange);
+
         //case '2' is active so game loads with saved data
-        if (MainMenu.loadSavedGame == 2)
+        if (MainMenu.newGame)
         {
+            Debug.Log("NEW GAME LOADED HAPPENED");
             LoadPlayer();
-            MainMenu.loadSavedGame = 1;
+            MainMenu.newGame = false;
+            return;
         }
         //case '3' is active so game loads and scene is immediatly reset
-        else if (MainMenu.loadSavedGame == 3)
+        else if (MainMenu.loadGame)
         {
+            Debug.Log("LOAD GAME LOADED HAPPENED");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            MainMenu.loadSavedGame = 1;
-        } else {
-            LoadNextLevel();
+            MainMenu.loadGame = false;
+            return;
         }
+        else if(gameManager.levelChange)
+        {
+            Debug.Log("LEVEL CHANGE LOADED HAPPENED");
+            LoadNextLevel();
+            gameManager.levelChange = false;
+            return;
+        }
+        Debug.Log("NOT LOADED HAPPENED");
     }
 
     private void OnEnable()
@@ -103,6 +116,7 @@ public class character : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(gameManager.levelChange);
         //health bar level is checked on update instead of in take damage to can be set to proper level after loading game
         healthBar.SetHealth(currentHp);
         energyBar.SetEnergy(currentEn);
