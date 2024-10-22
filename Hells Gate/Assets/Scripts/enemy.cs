@@ -19,6 +19,7 @@ public class enemy : MonoBehaviour
     }
    public void takeDmg(int damage)// enemy lose hp 
     {
+        Debug.Log(damage);
         if(difficultyScript.isEasy){
             damage = (int)(damage * 1.3f);
         }
