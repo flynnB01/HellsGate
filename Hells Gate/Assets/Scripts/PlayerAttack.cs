@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private BoxCollider2D box;
     public character player;
     private float strength;
 
-    private void Start()
-    {
-        box = GetComponent<BoxCollider2D>();
-    }
-
     void Update(){
-        strength = player.strength;
+        strength = player.strength; // get strength declared from character script
     }
 
     public void SetWeaponDamage(float weaponDamage)

@@ -29,7 +29,6 @@ public class Boss : MonoBehaviour
     private float atkTimer = 0.0f;
     private float atkTimeDelay = 0.0f;
 
-    private float flipTimer = 0.0f;
 
     [SerializeField] private PlayableDirector playableDirector;
 
